@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\C#Projects\ShopMarket\publish</_PublishTargetUrl>
+    <History>True|2021-09-27T18:43:48.9983443Z;True|2021-09-27T21:11:51.6301496+03:30;True|2021-09-27T20:28:39.7282637+03:30;True|2021-09-27T19:49:24.7052575+03:30;True|2021-09-27T19:16:46.3475366+03:30;True|2021-09-27T16:57:19.3258358+03:30;True|2021-09-27T16:18:41.8285720+03:30;True|2021-09-27T16:12:02.9398641+03:30;True|2021-09-25T16:03:09.9912612+03:30;</History>
+  </PropertyGroup>
+</Project>

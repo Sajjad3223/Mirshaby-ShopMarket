@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ShopMarket.Core.ViewModels.UserViewModels.RecentVisitViewModel>
+@{
+    ViewData["Title"] = "بازدید های اخیر";
+}
+
+<div class="section-title mb-2">
+    بازدید‌های اخیر
+</div>
+<div class="shadow-around">
+    <div class="listing-items row">
+        @if (Model.Any())
+        {
+            @foreach (var visit in Model)
+            {
+                <partial name="_RecentVisit" model="visit"/>
+            }
+        }
+        else
+        {
+            <div class="empty-box col-12">
+                <div class="icon">
+                    <i class="fal fa-times-circle"></i>
+                </div>
+                <div class="message">
+                    <p>بازدیدی برای نمایش وجود نداره!</p>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

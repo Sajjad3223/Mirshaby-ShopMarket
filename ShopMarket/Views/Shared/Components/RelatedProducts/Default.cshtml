@@ -1,0 +1,8 @@
+﻿@model ShopMarket.Core.DTOs.ProductDto.ProductDto
+
+@foreach (var product in Model.Products)
+{
+    <div class="swiper-slide ">
+        <partial name="_ProductCard" model="product"/>
+    </div>
+}

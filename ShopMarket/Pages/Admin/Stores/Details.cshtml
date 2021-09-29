@@ -1,0 +1,44 @@
+﻿@page
+@using ShopMarket.Core.Utilities.Convertors
+@model ShopMarket.Pages.Admin.Stores.DetailsModel
+
+@{
+    ViewData["Title"] = "جزئیات فروشگاه";
+    ViewData["page"] = "stores";
+    ViewData["sub-page"] = "activeStores";
+}
+
+<section>
+    <div class="card">
+        <dl class="row m-3">
+            <dt class="col-sm-2">
+                نام فروشگاه:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Store.StoreName)
+            </dd>
+            <dt class="col-sm-2">
+                توضیحات فروشگاه:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Store.StoreDescription)
+            </dd>
+            <dt class="col-sm-2">
+                ادرس فروشگاه:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Store.StoreAddress)
+            </dd>
+        
+            <dt class="col-sm-2">
+                تاریخ ثبت:
+            </dt>
+            <dd class="col-sm-10">
+                @Model.Store.CreationDate.ToShamsi()
+            </dd>
+        </dl>
+    </div>
+</section>
+<div>
+    <a asp-page="./Index">بازگشت به صفحه اصلی</a>
+</div>

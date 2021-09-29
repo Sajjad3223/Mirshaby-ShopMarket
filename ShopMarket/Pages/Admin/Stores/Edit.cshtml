@@ -1,0 +1,52 @@
+﻿@page
+@model ShopMarket.Pages.Admin.Stores.EditModel
+
+@{
+    ViewData["Title"] = "ویرایش فروشگاه";
+    ViewData["page"] = "stores";
+    ViewData["sub-page"] = "activeStores";
+}
+
+<section>
+    <div class="card p-3">
+        <div class="row">
+            <div class="m-2">
+                <form method="post" class="form">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Store.UserId" class="control-label"></label>
+                        <select asp-for="Store.UserId" class="form-control" asp-items="(ViewBag.UserId as SelectList)"></select>
+                        <span asp-validation-for="Store.UserId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Store.StoreName" class="control-label"></label>
+                        <input asp-for="Store.StoreName" class="form-control" />
+                        <span asp-validation-for="Store.StoreName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Store.StoreDescription" class="control-label"></label>
+                        <textarea asp-for="Store.StoreDescription" class="form-control"></textarea>
+                        <span asp-validation-for="Store.StoreDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Store.StoreAddress" class="control-label"></label>
+                        <input asp-for="Store.StoreAddress" class="form-control" />
+                        <span asp-validation-for="Store.StoreAddress" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" asp-for="Store.Id" />
+                    <div class="form-group">
+                        <input type="submit" value="ویرایش" class="btn btn-block btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-page="./Index">بازگشت به صفحه اصلی</a>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,51 @@
+﻿@model int
+@{
+    ViewData["Title"] = "سبد خرید";
+}
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-xl-9 col-lg-8 col-md-8 mb-md-0 mb-3">
+                <div class="checkout-section shadow-around">
+                    <div class="checkout-step">
+                        <ul>
+                            <li class="active"><span>سبد خرید</span></li>
+                            <li>
+                                <span>نحوه ارسال و پرداخت</span>
+                            </li>
+                            <li>
+                                <span>اتمام خرید و ارسال</span>
+                            </li>
+                        </ul>
+                    </div>
+                    @if (Model != 0)
+                    {
+                        @ViewBag.ItemsCount
+                        @await Component.InvokeAsync("CartItems",new
+                        {
+                            OrderId = Model
+                        });
+                    }
+                    else
+                    {
+                        <div class="empty-box col-12">
+                            <div class="icon">
+                                <i class="fal fa-times-circle"></i>
+                            </div>
+                            <div class="message">
+                                <p>کالایی برای نمایش وجود نداره!</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-4">
+                @if (Model != 0)
+                {
+                    @await Component.InvokeAsync("OrderPrices",new
+                    {
+                        OrderId = Model
+                    })
+                }
+            </div>
+        </div>
+    </div>

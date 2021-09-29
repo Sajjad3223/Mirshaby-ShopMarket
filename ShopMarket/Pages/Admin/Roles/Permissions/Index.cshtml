@@ -1,0 +1,89 @@
+﻿@page
+@model ShopMarket.Pages.Admin.Roles.Permissions.IndexModel
+@{
+    ViewData["Title"] = "مدیریت دسترسی ها";
+    ViewData["page"] = "roles";
+    ViewData["sub-page"] = "permissions";
+}
+
+
+<section class="section">
+    <div class="card">
+        <h3 class="card-header">
+            لیست دسترسی ها
+        </h3>
+        <div class="card-body">
+            <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+                <a href="/admin/roles/permissions/create" class="btn btn-primary">افزودن دسترسی جدید</a>
+                <div class="dataTable-container m-2">
+                    <table class="table table-striped dataTable-table" id="table1">
+                        <div class="row d-flex align-items-center border-bottom text-center">
+                            <div class="col-2">آیدی دسترسی</div>
+                            <div class="col-7"> عنوان دسترسی</div>
+                            <div class="col-2">عملیات</div>
+                        </div>
+                        @foreach (var item in Model.Permissions.Where(p => p.ParentID== null))
+                        {
+                            <div class="row d-flex align-items-center p-2 m-2 border border-success border-2 rounded-pill">
+                                <div class="col-2 text-center">@Html.DisplayFor(modelItem => item.PermissionId)</div>
+                                <div class="col-7 text-center">@Html.DisplayFor(modelItem => item.PermissionTitle)</div>
+                                <div class="col-1 text-center">
+                                    <a href="/admin/roles/permissions/edit/@item.PermissionId" class="btn btn-sm btn-outline-warning">
+                                        ویرایش
+                                    </a>
+                                </div>
+                                <div class="col-1 text-center">
+                                    <a href="/admin/roles/permissions/delete/@item.PermissionId" class="btn btn-sm btn-outline-danger">
+                                        حذف
+                                    </a>
+                                </div>
+                            </div>
+                            if (Model.Permissions.Any(p => p.ParentID == item.PermissionId))
+                            {
+                                foreach (var subPermisssion in Model.Permissions.Where(p => p.ParentID == item.PermissionId))
+                                {
+                                    <div class="row d-flex align-items-center p-2 m-2 border border-warning border-2 rounded-pill" style="margin-right: 3em !important;">
+                                        <div class="col-2 text-center">@Html.DisplayFor(modelItem => subPermisssion.PermissionId)</div>
+                                        <div class="col-7 text-center">@Html.DisplayFor(modelItem => subPermisssion.PermissionTitle)</div>
+                                        <div class="col-1 text-center">
+                                            <a href="/admin/roles/permissions/edit/@subPermisssion.PermissionId" class="btn btn-sm btn-outline-warning">
+                                                ویرایش
+                                            </a>
+                                        </div>
+                                        <div class="col-1 text-center">
+                                            <a href="/admin/roles/permissions/delete/@subPermisssion.PermissionId" class="btn btn-sm btn-outline-danger">
+                                                حذف
+                                            </a>
+                                        </div>
+                                    </div>
+                                    if (Model.Permissions.Any(p => p.ParentID == subPermisssion.PermissionId))
+                                    {
+                                        foreach (var p in Model.Permissions.Where(p => p.ParentID == subPermisssion.PermissionId))
+                                        {
+                                            <div class="row d-flex align-items-center p-2 m-2 border border-primary border-2 rounded-pill" style="margin-right: 6em !important;">
+                                                <div class="col-2 text-center">@Html.DisplayFor(modelItem => p.PermissionId)</div>
+                                                <div class="col-7 text-center">@Html.DisplayFor(modelItem => p.PermissionTitle)</div>
+                                                <div class="col-1 text-center">
+                                                    <a href="/admin/roles/permissions/edit/@p.PermissionId" class="btn btn-sm btn-outline-warning">
+                                                        ویرایش
+                                                    </a>
+                                                </div>
+                                                <div class="col-1 text-center">
+                                                    <a href="/admin/roles/permissions/delete/@p.PermissionId" class="btn btn-sm btn-outline-danger">
+                                                        حذف
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,379 @@
+﻿@using ShopMarket.Core.Utilities
+@using Microsoft.AspNetCore.Http
+@using ShopMarket.Core.ViewModels.ShopViewModels.ProductViewModels
+@model ShopMarket.Core.ViewModels.ShopViewModels.ProductViewModels.FullProductViewModel
+@{
+    var price = PriceCalculator.CalculateDiscountPrice(Model.ProductViewModel.Price, Model.ProductViewModel.Discount).ToString("N0");
+    ViewData["ProductId"] = Model.ProductViewModel.ProductId;
+    ViewData["Title"] = Model.ProductViewModel.Title;
+}
+<div class="container">
+    <div class="row mb-1">
+        <div class="col-12">
+            <partial name="Search Contents/_BreadCrumb" model="@Model.ProductViewModel.Title" />
+        </div>
+    </div>
+    <div class="product-detail shadow-around mb-5 py-5">
+        <div class="row mb-3 mx-0">
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="product-gallery">
+                    <div class="swiper-container gallery-slider ">
+                        <div class="swiper-wrapper">
+                            @foreach (var image in Model.Images)
+                            {
+                                <div class="swiper-slide">
+                                    <img src="@Directories.GetProductImage(image.ImageName,Model.ProductViewModel.ProductId)"
+                                         data-zoom-image="@Directories.GetProductImage(image.ImageName,Model.ProductViewModel.ProductId)"
+                                         class="zoom-image"
+                                         alt="gallery item">
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="swiper-container gallery-slider-thumbs ">
+                        <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(51.125px, 0px, 0px);">
+                            @foreach (var image in Model.Images)
+                            {
+                                <div class="swiper-slide">
+                                    <img src="@Directories.GetProductImage(image.ImageName,Model.ProductViewModel.ProductId)" alt="gallery item">
+                                </div>
+                            }
+                        </div>
+                        <!-- Add Arrows -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                    <ul class="product--actions">
+                        <li>
+                            <!-- در صورت نیاز به استفاده از فرم از کد زیر استفاده کنید -->
+                            <!-- <form action="">
+                                <button class="add-to-favorite"><i class="fas fa-heart"></i></button>
+                            </form> -->
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="#" onclick="AddToWishlist(@Model.ProductViewModel.ProductId)" class="is-action add-to-favorite"><i class="fas fa-heart"></i></a>
+                                <span class="tooltip--action">افزودن به علاقمندی</span>
+                            }
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#shareLinkModal"><i class="fas fa-share-alt"></i></a>
+                            <span class="tooltip--action">اشتراک گذاری</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-5 col-lg-4 col-md-6">
+                <div class="product-title mb-3">
+                    <h1>
+                        @Model.ProductViewModel.Title
+                    </h1>
+                </div>
+                <div class="d-block mb-2">
+                    <span class="font-weight-bold">دسته بندی:</span>
+                    <a href="#" class="link--with-border-bottom">@(((ShopCategoryViewModel)ViewBag.Category).Title)</a>
+                </div>
+
+                <div class="product-params-special">
+                    @if (Model.Details.Any())
+                    {
+                        <ul data-title="ویژگی‌های محصول">
+                            @foreach (var detail in Model.Details.Take(5))
+                            {
+                                <li>
+                                    <strong>@detail.Key</strong>
+                                    <span>@detail.Value</span>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+                @if (Model.ProductViewModel.Remaining <= 10 && Model.ProductViewModel.Remaining > 0)
+                {
+                    <div class="alert alert-warning">
+                        فقط @Model.ProductViewModel.Remaining عدد از این کالا در انبار موجود است!
+                    </div>
+                }
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="box-info-product">
+                    @if (Model.Colors.Any())
+                    {
+                        <div class="product-colors mb-3">
+                            <span class="d-block mb-3">رنگ:</span>
+                            <div id="selectoptions-color" class="change-submit list-radio-color">
+                                @foreach (var color in Model.Colors)
+                                {
+                                    <input type="radio" name="color" id="@color.Color.ToString()">
+                                    <label for="@color.Color.ToString()">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span style="background-color:@color.Color !important" class="color-span"></span>
+                                            <span class="mr-2">@(color.Color.ToString())</span>
+                                        </div>
+                                    </label>
+                                }
+                            </div>
+                        </div>
+                    }
+                    @if (Model.Sizes.Any())
+                    {
+                        <div class="product-colors mb-3">
+                            <span class="d-block mb-3">اندازه:</span>
+                            <div id="selectoptions-sizes" class="change-submit list-radio-color">
+                                @foreach (var size in Model.Sizes)
+                                {
+                                    <input type="radio" name="size" id="@size.Size.ToString()">
+                                    <label for="@size.Size.ToString()">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="mr-2">@(size.Size.ToString())</span>
+                                        </div>
+                                    </label>
+                                }
+                            </div>
+                        </div>
+                    }
+                    <div class="d-block mb-3">
+                        <span class="d-block">
+                            تعداد:
+                        </span>
+                        <div class="num-block">
+                            <div class="num-in">
+                                <span class="plus"></span>
+                                <input type="text" class="in-num" value="1" readonly="">
+                                <span class="minus dis"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-end mt-3">
+                        <div class="product-price">
+                            <div class="product-price-info">
+                                @if (Model.ProductViewModel.Discount.HasValue)
+                                {
+                                    <div class="product-price-off">
+                                        %@Model.ProductViewModel.Discount <span>تخفیف</span>
+                                    </div>
+                                    <div class="product-price-prev">
+                                        @Model.ProductViewModel.Price.ToString("N0")
+                                    </div>
+                                }
+                            </div>
+                            <div class="product-price-real">
+                                <div class="product-price-raw">
+                                    @price
+                                </div>
+                                تومان
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @if (Model.ProductViewModel.Remaining > 0)
+                            {
+                                <a href="" class="add-to-cart" onclick="AddToCart(@Model.ProductViewModel.ProductId)">
+                                    <i class="fad fa-cart-plus"></i>
+                                    افزودن به سبد خرید
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="" class="add-to-cart btn-danger bg-danger">
+                                    <i class="fad fa-cart-plus"></i>
+                                    درانبار موجود نیست
+                                </a>
+                            }
+                        }
+                        else
+                        {
+                            <a asp-area="User" asp-controller="Account" asp-action="Login" class="add-to-cart">
+                                برای خرید وارد شوید
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="py-3">
+            <div class="row mx-0">
+                <div class="col-12">
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="services pt-3 row mx-0">
+            <div class="col-md-3 col-sm-6 mb-md-0 mb-4">
+                <div class="service-item">
+                    <img src="/images/services/delivery-person.png" alt="">
+                    <div class="service-item-body">
+                        <h6>تحویل سریع و رایگان</h6>
+                        <p>تحویل رایگان کالا برای کلیه سفارشات بیش از 500 هزار تومان</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-md-0 mb-4">
+                <div class="service-item">
+                    <img src="/images/services/recieve.png" alt="">
+                    <div class="service-item-body">
+                        <h6>۷ روز ضمانت بازگشت</h6>
+                        <p>در صورت نارضایتی به هر دلیلی می توانید محصول را بازگردانید</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-md-0 mb-4">
+                <div class="service-item">
+                    <img src="/images/services/headset.png" alt="">
+                    <div class="service-item-body">
+                        <h6>پشتیبانی ۲۴ ساعته</h6>
+                        <p>در صورت وجود هرگونه سوال یا ابهامی، با ما در تماس باشید</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-md-0 mb-4">
+                <div class="service-item">
+                    <img src="/images/services/debit-card.png" alt="">
+                    <div class="service-item-body">
+                        <h6>پرداخت آنلاین ایمن</h6>
+                        <p>محصولات مدنظر خود را با خیال آسوده به صورت آنلاین خریداری کنید</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- product-tab-content -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="product-tab-content">
+                <ul class="nav nav-tabs" id="product-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="productDescription-tab" data-toggle="tab" href="#productDescription" role="tab" aria-controls="productDescription" aria-selected="true">توضیحات</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="productParams-tab" data-toggle="tab" href="#productParams" role="tab" aria-controls="productParams" aria-selected="false">مشخصات فنی</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="productComments-tab" data-toggle="tab" href="#productComments" role="tab" aria-controls="productComments" aria-selected="false">نظرات</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="product-tab">
+                    <div class="tab-pane fade show active" id="productDescription" role="tabpanel" aria-labelledby="productDescription-tab">
+                        <div class="product-desc">
+                            <div class="accordion accordion-product" id="accordionDescription">
+                                @Html.Raw(Model.ProductViewModel.Description)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="productParams" role="tabpanel" aria-labelledby="productParams-tab">
+                        <div class="product-params">
+                            <section>
+                                <h3 class="params-title">مشخصات</h3>
+                                <ul class="params-list">
+                                    @foreach (var detail in Model.Details)
+                                    {
+                                        <li>
+                                            <div class="params-list-key">
+                                                <span>@detail.Key</span>
+                                            </div>
+                                            <div class="params-list-value">
+                                                <span>@detail.Value</span>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </section>
+                        </div>
+                    </div>
+                    @await Component.InvokeAsync("Comments", new
+                    {
+                        productId = Model.ProductViewModel.ProductId
+                    })
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end product-tab-content -->
+    <section class="product-carousel">
+        <div class="section-title">
+            <i class="fad fa-retweet"></i>
+            پیشنهادهای مشابه
+        </div>
+        <div class="swiper-container slider-lg ">
+            <div class="swiper-wrapper">
+                @await Component.InvokeAsync("RelatedProducts", new
+                {
+                   categoryId = (ViewBag.Category as ShopCategoryViewModel).CategoryId,
+                   Tags = Model.ProductViewModel.Tags
+                })
+            </div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-disabled="false"></div>
+            <div class="swiper-button-prev swiper-button-disabled" tabindex="0" role="button" aria-label="Previous slide" aria-disabled="true"></div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+        </div>
+    </section>
+</div>
+
+
+<!-- shareLinkModal -->
+<div class="modal fade" id="shareLinkModal" tabindex="-1" aria-labelledby="shareLinkModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="shareLinkModalLabel">اشتراک‌گذاری</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted">
+                    با استفاده از لینک کوتاه زیر می‌توانید این صفحه را با دوستان خود به اشتراک
+                    بگذارید.
+                </p>
+                <span class="d-block font-weight-bold mb-1">لینک کوتاه</span>
+                <div class="form-element-row mb-0">
+                    <input type="text" class="input-element dir-ltr text-sm"
+                           value="@(Directories.DOMAIN+"p/"+Model.ProductViewModel.ShortLink)">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end shareLinkModal -->
+
+
+@section Script
+{
+    <script>
+        function AddItemToCart(id) {
+            event.preventDefault();
+            var color = $('input[type=radio][name=color]:checked').attr('id');
+            var size = $('input[type=radio][name=size]:checked').attr('id');
+
+            var count = $('input.in-num').val();
+            console.log('color: ' + color + 'size: ' + size);
+            $.get('/product/addtocart/' + id + '/' + count + '/' + color + '/' + size).done(result => {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer);
+                        toast.addEventListener('mouseleave', Swal.resumeTimer);
+                    }
+                });
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'به سبد خریدتان اضافه شد'
+                });
+
+                //location.reload();
+                $('#cart-preview').replaceWith(result);
+                $('.do-nice-scroll').niceScroll({
+                    railalign: 'left'
+                });
+            });
+        }
+    </script>
+}

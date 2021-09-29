@@ -1,0 +1,57 @@
+﻿@page "{id}"
+@using ShopMarket.Domain.ShopEntities.OrderEntities
+@model ShopMarket.Pages.Admin.Orders.DetailsModel
+@{
+    ViewData["Title"] = "جزئیات سفارش";
+    ViewData["page"] = "users";
+    ViewData["sub-page"] = "activeUsers";
+}
+
+
+<section class="section">
+    <div class="card">
+        <div class="card-header">
+            لیست جزئیات سفارش شماره @Request.Query["id"]
+        </div>
+        <div class="card-body">
+            <table class="table table-striped" id="ordersTable">
+                <thead>
+                    <tr>
+                        <th>نام</th>
+                        <th>تعداد</th>
+                        <th>قیمت</th>
+                        <th>جمع</th>
+                        <th>رنگ</th>
+                        <th>سایز</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var orderItem in Model.OrderItems)
+                    {
+                        <tr>
+                            <td>@orderItem.Product.Title</td>
+                            <td>@orderItem.Count</td>
+                            <td>@(orderItem.Price??0)</td>
+                            <td>@((orderItem.Price ?? 0) * orderItem.Count)</td>
+                            <td>@(orderItem.Color.ToString()??"-")</td>
+                            <td>@(orderItem.Size.ToString()??"-")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+
+@section Scripts
+{
+    <script src="/admin-panel/vendors/simple-datatables/simple-datatables.js"></script>
+
+    <script>
+
+        // Simple Datatable
+        let table1 = document.querySelector('#ordersTable');
+        let dataTable = new simpleDatatables.DataTable(table1);
+    </script>
+}

@@ -1,0 +1,89 @@
+﻿@page
+@using ShopMarket.Core.Utilities
+@model ShopMarket.Pages.Admin.BannersModel
+@{
+    ViewData["Title"] = "مدیریت بنر ها";
+    ViewData["page"] = "index";
+}
+
+
+<section>
+    <div class="card">
+        <div class="m-3">
+            <form class="form row" method="post" enctype="multipart/form-data">
+                <div id="banners">
+                    @if (Model.Banners.Any())
+                    {
+                        @foreach (var banner in Model.Banners)
+                        {
+                            <div class="row">
+                                <div class=" m-2 col-md-5 col-sm-12">
+                                    <label class="input-group-text">
+                                        <i class="bi bi-upload mx-2"></i>
+                                        آپلود تصویر
+                                    </label>
+                                    <input type="file" name="banner_images" class="form-control banner-image" accept="image/*">
+                                    <img class="img-thumbnail " style="max-width: 100%" src="@(Directories.GetBannerImage(banner.BannerImage))" />
+                                </div>
+                                <div class="m-2 col-12">
+                                    <label class="input-group-text bg-warning text-light">
+                                        لینک صفحه
+                                    </label>
+                                    <input type="text" class="form-control banner-link" value="@banner.BannerLink" name="banner_links">
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        @for (int i = 1; i <= 4; i++)
+                        {
+                            <div class="row">
+                                <h3>بنر شماره @i</h3>
+                                <div class=" m-2 col-md-5 col-sm-12">
+                                    <label class="input-group-text">
+                                        <i class="bi bi-upload mx-2"></i>
+                                        آپلود تصویر
+                                    </label>
+                                    <input type="file" name="banner_images" class="form-control banner-image" accept="image/*">
+                                    <img class="img-thumbnail " style="max-width: 100%" src=""/>
+                                </div>
+                                <div class="m-2 col-12">
+                                    <label class="input-group-text bg-warning text-light">
+                                        لینک صفحه
+                                    </label>
+                                    <input type="text" class="form-control banner-link" name="banner_links">
+                                </div>
+                            </div>
+                            <hr />
+                        }
+                    }
+
+                </div>
+                <button type="submit" class="btn btn-primary col-12">ثبت بنر ها</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts
+{
+    <script>
+        function PreviewMainImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $(input).siblings('img').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#banners").on('change','input.banner-image',function () {
+            PreviewMainImage(this);
+        });
+
+    </script>
+}

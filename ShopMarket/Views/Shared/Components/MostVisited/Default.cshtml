@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ShopMarket.Core.ViewModels.ShopViewModels.ProductViewModels.ProductViewModel>
+@{
+    int skip = 0;
+    int loopCount = Model.Count() / 3;
+}
+<div class="row mb-5">
+    <div class="col-12 mb-4">
+        <div class="section-title">
+            <i class="fad fa-sort-size-up-alt"></i>
+            پربازدید ترین ها
+        </div>
+    </div>
+        @if (Model.Any())
+        {
+            @for (int i = 0; i < loopCount; i++)
+            {
+                @foreach (var product in Model.Skip(skip).Take(3))
+                {
+                    <div class="col-lg-4">
+                        <partial name="_HorizontalProductCard" model="product"/>
+                    </div>
+                    skip++;
+                }
+            }
+        }
+</div>

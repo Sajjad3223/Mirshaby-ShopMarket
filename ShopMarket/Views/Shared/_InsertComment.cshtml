@@ -1,0 +1,52 @@
+﻿@model int
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>امتیاز شما:</label>
+                <div class="add-rating">
+                    <input type="radio" name="rating" id="5" value="1">
+                    <label for="5"></label>
+                    <input type="radio" name="rating" id="4" value="1">
+                    <label for="4"></label>
+                    <input type="radio" name="rating" id="3" value="1">
+                    <label for="3"></label>
+                    <input type="radio" name="rating" id="2" value="1">
+                    <label for="2"></label>
+                    <input type="radio" name="rating" id="1" value="1">
+                    <label for="1"></label>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-element-row">
+                <label  class="label-element">
+                    نام و نام خانوادگی شما
+                </label>
+                <input  class="input-element">
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-element-row">
+                <label class="label-element">نظر شما</label>
+                <textarea id="comment" cols="30" rows="10" class="input-element"></textarea>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <a href="" class="btn btn-primary px-3" onclick="SendComment(@Model)">ارسال نظر <i class="fad fa-comment-alt-edit"></i></a>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-primary">
+        برای ثبت نظر
+        <a class="btn btn-outline-info" asp-area="User" asp-controller="Account" asp-action="Login" asp-route-ReturnUrl="@Context.Request.Path.Value"> وارد شوید</a>
+    </div>
+}
+
+

@@ -1,0 +1,62 @@
+﻿@using ShopMarket.Core.Utilities
+@model IEnumerable<ShopMarket.Core.ViewModels.ShopViewModels.ProductViewModels.ShopCategoryViewModel>
+
+<nav class="nav-wrapper">
+    <ul>
+        <li class="category-list">
+            <a href="#"><i class="fal fa-bars"></i>دسته بندی کالاها</a>
+            <ul>
+                @foreach (var category in Model.Where(c => c.ParentId == null))
+                {
+                    <li>
+                        <a asp-area="" asp-controller="Home" asp-action="Search" asp-route-categoryId="@category.CategoryId">@category.Title</a>
+                        @if (Model.Any(c => c.ParentId == category.CategoryId))
+                        {
+                            <ul class="row">
+                                <li class="col-12">
+                                    <a asp-area="" asp-controller="Home" asp-action="Search" asp-route-categoryId="@category.CategoryId">
+                                        همه دسته‌بندی‌های @category.Title
+                                    </a>
+                                </li>
+                                <li class="col-3">
+                                    @foreach (var subCategory in Model.Where(c => c.ParentId == category.CategoryId))
+                                    {
+                                        <a asp-area="" asp-controller="Home" asp-action="Search" asp-route-categoryId="@subCategory.CategoryId">@subCategory.Title</a>
+                                        @if (Model.Any(c => c.ParentId == subCategory.CategoryId))
+                                        {
+                                            <ul>
+                                                @foreach (var cat in Model.Where(c => c.ParentId == subCategory.CategoryId))
+                                                {
+                                                    <li><a asp-area="" asp-controller="Home" asp-action="Search" asp-route-categoryId="@cat.CategoryId">@cat.Title</a></li>
+                                                }
+                                            </ul>
+                                        }
+                                    }
+                                </li>
+
+                                @if (category.CategoryImage != "default.png")
+                                {
+                                    <li class="col-3">
+                                        <ul class="d-flex my-3">
+                                            <li>
+                                                <a href="#" class="list-item--image ml-1 border rounded p-1">
+                                                    <img src="@(Directories.GetCategoryImage(category.CategoryImage))"
+                                                         class="img-fluid rounded" alt="">
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </li>
+                }
+            </ul>
+        </li>
+
+
+        <li>
+            <a asp-area="" asp-controller="Home" asp-action="ContactUs"><i></i>سوال دارید؟</a>
+        </li>
+    </ul>
+</nav>

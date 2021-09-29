@@ -1,0 +1,26 @@
+﻿@page
+@model ShopMarket.Pages.Admin.IndexModel
+@{
+    ViewData["Title"] = "مدیریت صفحه اصلی";
+    ViewData["page"] = "index";
+}
+
+<section>
+    <div class="card">
+        <div class="row m-3">
+            <a asp-page="./Slider" class="btn btn-lg btn-outline-primary col-5 m-3">مدیریت محتوای اسلایدر</a>
+            <a asp-page="./Banners" class="btn btn-lg btn-outline-info col-5 m-3">مدیریت بنر ها</a>
+            <form method="post" class="form border border-2 m-3 p-3">
+                <div class="col-md-6 mb-4">
+                    <h6>در صفحه اصلی کالا های دسته بندی زیر نمایش داده میشود</h6>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="Category">دسته بندی</label>
+                        <select class="form-select" id="category" name="categoryId" asp-items="@(ViewData["Categories"] as SelectList)">
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-block btn-outline-primary"> ثبت تغییرات</button>
+            </form>
+        </div>
+    </div>
+</section>

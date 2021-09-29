@@ -1,0 +1,48 @@
+﻿@page
+@model ShopMarket.Pages.Admin.Roles.Permissions.CreateModel
+@{
+    ViewData["page"] = "roles";
+    ViewData["sub-page"] = "permissions";
+    ViewData["Title"] = "افزودن دسترسی جدید";
+}
+
+<section id="multiple-column-form">
+    <div class="row match-height">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">افزودن دسترسی جدید</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <form class="form" method="post" >
+                            <div class="row">
+                                <div class="form-group col-md-6 col-12">
+                                    <div class="input-group align-items-center">
+                                        <label asp-for="Permission.PermissionTitle"></label>
+                                        <input asp-for="Permission.PermissionTitle" class="form-control" placeholder="عنوان دسترسی">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6 col-12">
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" asp-for="Permission.ParentID">دسته بندی والد</label>
+                                        <select class="form-select" asp-for="Permission.ParentID" asp-items="@(ViewData["Permissions"] as SelectList)">
+                                            <option value="">----</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary me-1 mb-1">ثبت دسترسی</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

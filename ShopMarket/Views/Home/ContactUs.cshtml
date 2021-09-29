@@ -1,0 +1,84 @@
+﻿@model ShopMarket.Core.ViewModels.TicketViewModel
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="section-title mb-2">
+                تماس با همتا
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="shadow-around p-3 mb-5">
+                <form class="row" method="post">
+                    <div class="col-12 mb-3">
+                        <p class="text-muted text-sm">
+                            برای پیگیری یا سوال درباره سفارش و ارسال پیام بهتر است
+                            از فرم زیر استفاده کنید.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-element-row">
+                            <label asp-for="Title" class="label-element"></label>
+                            <input asp-for="Title" class="input-element" placeholder="موضوع تیکت">
+                            <span asp-validation-for="Title"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-element-row">
+                            <label asp-for="FullName" class="label-element"></label>
+                            <input asp-for="FullName" class="input-element" placeholder="نام خود را وارد کنید">
+                            <span asp-validation-for="FullName"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-element-row">
+                            <label asp-for="Email" class="label-element"></label>
+                            <input asp-for="Email" class="input-element" placeholder="ایمیل خود را وارد کنید">
+                            <span asp-validation-for="Email"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-element-row">
+                            <label asp-for="Phone" class="label-element"></label>
+                            <input asp-for="Phone" class="input-element dir-ltr" placeholder="0912 345 6789">
+                            <span asp-validation-for="Phone"></span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-element-row">
+                            <label asp-for="Text" class="label-element"></label>
+                            <textarea asp-for="Text" cols="30" rows="10" class="input-element"></textarea>
+                            <span asp-validation-for="Text"></span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-element-row text-left">
+                            <button class="btn-element btn-info-element">
+                                ثبت و ارسال
+                                <i class="fad fa-money-check-edit mr-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Script
+{
+    <partial name="_ValidationScriptsPartial"/>
+    @if (!string.IsNullOrEmpty(ViewBag.Result?.ToString()))
+    {
+        <script src="/js/plugins/sweetalert2.all.min.js"></script>
+        <script>
+            $(function() {
+                Swal.fire({
+                    icon: "success",
+                    title: "پیام شما با موفقیت ارسال شد!"
+                });
+            });
+        </script>
+    }
+}

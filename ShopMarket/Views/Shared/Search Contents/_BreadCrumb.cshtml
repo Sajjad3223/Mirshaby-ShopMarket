@@ -1,0 +1,22 @@
+﻿@using ShopMarket.Domain.ShopEntities
+@using ShopMarket.Core.ViewModels.ShopViewModels.ProductViewModels
+@model string
+
+<div class="breadcrumb mb-2 pt-2">
+    <nav>
+        <a asp-controller="Home" asp-action="Index">خانه</a>
+        @if (ViewBag.ParentCategory != null)
+        {
+            <a asp-controller="Home" asp-action="Search" asp-route-categoryId="@(((ShopCategoryViewModel) ViewBag.ParentCategory).CategoryId)">@(((ShopCategoryViewModel) ViewBag.ParentCategory).Title)</a>
+        }
+        @if (ViewBag.Category != null)
+        {
+            <a asp-controller="Home" asp-action="Search" asp-route-categoryId="@(((ShopCategoryViewModel) ViewBag.Category).CategoryId)">@(((ShopCategoryViewModel) ViewBag.Category).Title)</a>
+        }
+        @if (!string.IsNullOrEmpty(Model))
+        {
+            <a>@Model</a>
+        }
+
+    </nav>
+</div>

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ShopMarket.Core.ViewModels.ShopViewModels.ProductViewModels.ShopCategoryViewModel>
+
+<ul class="category-list">
+    @foreach (var category in Model.Where(c => c.ParentId == null))
+    {
+        <li class="@(Model.Any(c=>c.ParentId==category.CategoryId) ? "has-children" : "")">
+            <a asp-area="" asp-controller="Home" asp-action="Search" asp-route-categoryId="@category.CategoryId">@category.Title</a>
+            @if (Model.Any(c => c.ParentId == category.CategoryId))
+            {
+                <ul>
+                    @foreach (var subCategory in Model.Where(c => c.ParentId == category.CategoryId))
+                    {
+                        
+                        <li class="@(Model.Any(c=>c.ParentId==subCategory.CategoryId) ? "has-children" : "")">
+                            <a asp-area="" asp-controller="Home" asp-action="Search" asp-route-categoryId="@subCategory.CategoryId">@subCategory.Title</a>
+                            @if (Model.Any(c => c.ParentId == subCategory.CategoryId))
+                            {
+                        <ul>
+                            @foreach (var cat in Model.Where(c => c.ParentId == subCategory.CategoryId))
+                            {
+                                <li>
+                                    <a asp-area="" asp-controller="Home" asp-action="Search" asp-route-categoryId="@cat.CategoryId">
+                                        @cat.Title
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                            }
+                        </li>
+                   
+                    }
+                </ul>
+            }
+        </li>
+    
+    }
+</ul>

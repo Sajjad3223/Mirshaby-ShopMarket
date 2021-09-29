@@ -1,0 +1,68 @@
+﻿@using ShopMarket.Core.Utilities
+@model ShopMarket.Core.ViewModels.ShopViewModels.OrderViewModels.CartItemViewModel
+
+@{
+    var Price = Model.Count * Model.Price;
+}
+
+<div class="cart-item py-4 px-3">
+    <div class="item-thumbnail">
+        <a href="/product/@Model.ProductId">
+            <img src="@(Directories.GetProductImage(Model.MainImage,Model.ProductId))" alt="item">
+        </a>
+    </div>
+    <div class="item-info flex-grow-1">
+        <div class="item-title">
+            <h2>
+                <a href="/product/@Model.ProductId">@Model.Title</a>
+            </h2>
+        </div>
+        <div class="item-detail">
+            <ul>
+                @if (Model.Color != null)
+                {
+                    <li>
+                        <span class="color" style="background-color: @Model.Color.ToString();"></span>
+                        <span>@Model.Color.ToString()</span>
+                    </li>
+                }
+                <li>
+                    <i class="far fa-store-alt text-muted"></i>
+                    <span>@Model.SellerName</span>
+                </li>
+                @if (Model.Remaining > 0)
+                {
+                    <li>
+                        <i class="far fa-clipboard-check text-primary"></i>
+                        <span>موجود در انبار</span>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <i class="far fa-times-circle text-dnager"></i>
+                        <span class="text-danger">در انبار موجود نیست</span>
+                    </li>
+                }
+            </ul>
+            <div class="item-quantity--item-price">
+                <div class="item-quantity">
+                    <div class="num-block">
+                        <div class="num-in">
+                            <span class="plus" onclick="IncreaseOrderItem(@Model.ItemId)"></span>
+                            <input type="text" class="in-num" value="@Model.Count" readonly>
+                            <span class="minus dis" onclick="DecreaseOrderItem(@Model.ItemId)"></span>
+                        </div>
+                    </div>
+                    <button class="item-remove-btn mr-3" onclick="RemoveCartItem(@Model.ItemId)">
+                        <i class="far fa-trash-alt"></i>
+                        حذف
+                    </button>
+                </div>
+                <div class="item-price">
+                    @Price.ToString("N0")<span class="text-sm mr-1">تومان</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

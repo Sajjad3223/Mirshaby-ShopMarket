@@ -1,0 +1,18 @@
+﻿@model IEnumerable<ShopMarket.Core.ViewModels.UserViewModels.UserAddressViewModel>
+
+<div class="row mx-0">
+    @if (Model.Any())
+    {
+        @foreach (var address in Model)
+        {
+            <partial name="_Address" model="address" />
+        }
+    }
+    <div class="col-xl-3 col-lg-4 col-sm-6 mb-3">
+        <div class="custom-control custom-radio">
+            <button class="add-address" data-toggle="modal" data-target="#addAddressModal">
+                <i class="fa fa-plus"></i>
+            </button>
+        </div>
+    </div>
+</div>

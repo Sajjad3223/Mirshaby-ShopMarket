@@ -1,0 +1,209 @@
+﻿@page "{id}"
+@using ShopMarket.Domain.ShopEntities
+@model ShopMarket.Pages.Admin.Products.EditModel
+@{
+    ViewData["Title"] = "ویرایش کالا";
+    var availableColors = Model.FullProductViewModel.Colors.Select(c => c.Color.ToString());
+    var availableSizes = Model.FullProductViewModel.Sizes.Select(s => s.Size.ToString());
+}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            افزودن کالای جدید
+        </div>
+        <hr />
+        <div class="card-content">
+            <div class="card-body">
+                <form class="form row" method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="ProductViewModel.ProductId">
+                    <input type="hidden" asp-for="ProductViewModel.Visit">
+                    <input type="hidden" asp-for="ProductViewModel.Score">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label asp-for="ProductViewModel.Title"></label>
+                            <input asp-for="ProductViewModel.Title" class="form-control" placeholder="عنوان کالا">
+                            <span asp-validation-for="ProductViewModel.Title"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ProductViewModel.StoreId"></label>
+                            <select asp-for="ProductViewModel.StoreId" class="form-control" asp-items="@(ViewData["Stores"] as SelectList)"></select>
+                            <span asp-validation-for="ProductViewModel.StoreId"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ProductViewModel.CategoryId"></label>
+                            <select asp-for="ProductViewModel.CategoryId" class="form-control" asp-items="@(ViewData["Categories"] as SelectList)"></select>
+                            <span asp-validation-for="ProductViewModel.CategoryId"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ProductViewModel.Description"></label>
+                            <textarea class="form-control" asp-for="ProductViewModel.Description" rows="10"></textarea>
+                            <span asp-validation-for="ProductViewModel.Description"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ProductViewModel.Tags"></label>
+                            <input asp-for="ProductViewModel.Tags" class="form-control" placeholder="کلمات کلیدی">
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ProductViewModel.Price"></label>
+                            <input asp-for="ProductViewModel.Price" class="form-control" placeholder="قیمت کالا">
+                            <span asp-validation-for="ProductViewModel.Price"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ProductViewModel.Remaining"></label>
+                            <input asp-for="ProductViewModel.Remaining" class="form-control" placeholder="موجودی انبار">
+                            <span asp-validation-for="ProductViewModel.Remaining"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ProductViewModel.Discount"></label>
+                            <input asp-for="ProductViewModel.Discount" class="form-control" placeholder="تخفیف (به درصد وارد کنید)">
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ProductViewModel.DiscountCount"></label>
+                            <input asp-for="ProductViewModel.DiscountCount" class="form-control" placeholder="تعداد تخفیف">
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label asp-for="ProductViewModel.ShowInSlider"></label>
+                                <input asp-for="ProductViewModel.ShowInSlider" class="form-check-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        عکس اصلی
+                        <div class="input-group m-2">
+                            <label class="input-group-text" asp-for="ProductViewModel.MainImageFile">
+                                <i class="bi bi-upload"></i>
+                            </label>
+                            <input asp-for="ProductViewModel.MainImageFile" class="form-control" accept="image/*">
+                        </div>
+                        عکس های دیگر
+                        <div class="input-group m-2">
+                            <label class="input-group-text" asp-for="ProductViewModel.ProductImages">
+                                <i class="bi bi-upload"></i>
+                            </label>
+                            <input asp-for="ProductViewModel.ProductImages" class="form-control" accept="image/*">
+                        </div>
+                        <hr />
+                        <div>رنگ های موجود این کالا</div>
+                        <div class="form-group m-2 row">
+                            @foreach (var color in Enum.GetNames(typeof(EColor)))
+                            {
+                                <div class="checkbox col-3">
+                                    <label style="color: @color; text-shadow: 0 0 5px rgba(0, 0, 0, 0.5)">@color</label>
+                                    <input name="availableColors" type="checkbox" style="border-color: @color;" value="@color" class="form-check-input"
+                                           @(availableColors.Contains(color) ? "checked" : "")>
+                                </div>
+                            }
+                        </div>
+
+                        <div>اندازه های موجود این کالا</div>
+                        <div class="form-group m-2 row">
+                            @foreach (var size in Enum.GetNames(typeof(ESize)))
+                            {
+                                <div class="checkbox col-4">
+                                    <label>@size</label>
+                                    <input name="availableSizes" type="checkbox" value="@size" class="form-check-input"
+                                           @(availableSizes.Contains(size) ? "checked" : "")>
+                                </div>
+                            }
+                        </div>
+                        <hr />
+                        <div>مشخصات و جزئیات این کالا</div>
+                        <div id="details-Container">
+                            @foreach (var detail in Model.FullProductViewModel.Details)
+                            {
+                                <div class="input-group m-2">
+                                    <span class="input-group-text">عنوان - مقدار</span>
+                                    <input type="text" name="detail_key" placeholder="عنوان" class="form-control" value="@detail.Key">
+                                    <input type="text" name="detail_value" placeholder="مقدار" class="form-control" value="@detail.Value">
+                                </div>
+                            }
+                        </div>
+                        <a href="#" id="add-detail" class="btn btn-block btn-outline-primary">
+                            + افزودن
+                        </a>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">ثبت کالا</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    <script>
+
+        CKEDITOR.replace('ProductViewModel_Description', {
+            customConfig: '/js/Config.js'
+        });
+
+    </script>
+    <script>
+
+        function PreviewMainImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#mainImage').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#mainImageFile").change(function () {
+            PreviewMainImage(this);
+        });
+
+        function PreviewOtherImages(input) {
+
+            if (input.files) {
+                $('#otherImages').empty();
+
+                for (var i = 0; i < input.files.length; i++) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        var image = `<img src='${e.target.result}' style="max-width:80px;" />`;
+                        $('#otherImages').append(image);
+                    }
+
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+        }
+
+        $("#otherImagesFile").change(function () {
+            PreviewOtherImages(this);
+        });
+
+        $('#details-Container ').on('click',
+            'a.delete-detail',
+            event => {
+                event.preventDefault();
+
+                $(event.target).parent().remove();
+            });
+        $('#add-detail').click(event => {
+            event.preventDefault();
+
+            var detail = $('<div class="input-group m-2">');
+
+            var key_input = '<input type="text" name="detail_key" placeholder="عنوان" class="form-control">';
+            var value_input = '<input type="text" name="detail_value" placeholder="مقدار" class="form-control">';
+            var delete_button = '<a class="delete-detail btn btn-outline-danger">-</a>';
+
+            $(detail).append(key_input, value_input, delete_button);
+
+            $("#details-Container").append(detail);
+
+        });
+
+    </script>
+}

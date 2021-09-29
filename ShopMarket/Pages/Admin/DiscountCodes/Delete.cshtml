@@ -1,0 +1,18 @@
+﻿@page
+@model ShopMarket.Pages.Admin.DiscountCodes.DeleteModel
+@{
+    ViewData["Title"] = "مدیریت تخفیفات";
+    ViewData["page"] = "discount";
+    ViewData["sub-page"] = "discount";
+}
+
+<section class="section">
+    <div class="card">
+        <form method="post">
+            <input type="hidden" asp-for="DiscountCode.DiscountCodeId" />
+            <h1>آیا از حذف کد "@Model.DiscountCode.Code" با درصد تخفیف "@Model.DiscountCode.Discount%" مطمئن هستید؟</h1>
+            <button class="btn btn-danger" type="submit">حذف کد تخفیف</button>
+            <a asp-page="Index" class="btn btn-link">رفتن به صفحه اصلی</a>
+        </form>
+    </div>
+</section>

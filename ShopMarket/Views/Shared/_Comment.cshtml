@@ -1,0 +1,46 @@
+﻿@using ShopMarket.Core.Utilities
+@using ShopMarket.Core.Utilities.Convertors
+@model ShopMarket.Core.ViewModels.ShopViewModels.ProductCommentViewModel
+
+<div class="row">
+    <div class="col-md-3 aside">
+        <ul class="comments-user-shopping">
+            <li>
+                <div class="cell cell-name">
+                    @Model.FullName
+                </div>
+            </li>
+            <li>
+                <div class="cell">
+                    @Model.CreationDate.ToShamsi()
+                </div>
+            </li>
+        </ul>
+
+        @if (Model.Score >= 3)
+        {
+            <div class="alert alert-primary">
+                <i class="fas fa-thumbs-up"></i> <span>خرید این محصول را توصیه می‌کنم</span>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger">
+                <i class="fas fa-thumbs-down"></i> <span>خرید این محصول را توصیه نمی‌کنم</span>
+            </div>
+        }
+    </div>
+    <div class="col-md-9 article">
+        <p>@Model.Text</p>
+    </div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        @if (User.GetUserId() == Model.UserId)
+        {
+            <a href="#" class="btn btn-light btn-sm align-self-end" onclick="RemoveComment(@Model.CommentId)">
+                حذف
+                <i class="far fa-trash-alt mr-2"></i>
+            </a>
+        }
+    }
+</div>

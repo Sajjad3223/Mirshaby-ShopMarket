@@ -1,0 +1,90 @@
+﻿@model ShopMarket.Core.ViewModels.ShopViewModels.OrderViewModels.OrderViewModel
+@{
+    ViewData["Title"] = "روش ارسال و پرداخت";
+}
+
+<div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="editAddressModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalTitle">ویرایش آدرس</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" id="ModalBody">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-xl-9 col-lg-8 col-md-8 mb-md-0 mb-3">
+            <div class="checkout-section shadow-around">
+                <div class="checkout-step">
+                    <ul>
+                        <li class="active">
+                            <a href="#"><span>سبد خرید</span></a>
+                        </li>
+                        <li class="active">
+                            <span>نحوه ارسال و پرداخت</span>
+                        </li>
+                        <li>
+                            <span>اتمام خرید و ارسال</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checkout-section-content">
+                    <div class="checkout-section-title">آدرس تحویل سفارش</div>
+                    @await Component.InvokeAsync("UserAddresses",new
+                    {
+                        userId = Model.UserId
+                    })
+                    
+                    <hr>
+                    @if (Model.Discount == 0)
+                    {
+                        <div class="row mx-0">
+                            <partial name="_DiscountInput" model="@Model.OrderId"/>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-4">
+            @await Component.InvokeAsync("OrderPrices", new
+            {
+                OrderId = Model.OrderId
+            })
+        </div>
+    </div>
+</div>
+
+@section Script
+{
+    <script>
+        function ApplyDiscount(id) {
+            event.preventDefault();
+            const discountCode = $("#DiscountCode").val();
+            $.get("/order/ApplyDiscount/" + id + "/" + discountCode).done(result => {
+                console.log(result);
+                if (result != null) {
+                    Swal.fire({
+                        title: 'تخفیف با موفقیت اعمال شد!',
+                        confirmButtonText: 'باشه',
+                        icon: 'success'
+                    });
+                    $('#order-prices').replaceWith(result);
+                } else {
+                    Swal.fire({
+                        title: 'کد تخفیف اعمال نشد!',
+                        confirmButtonText: 'باشه',
+                        icon: 'error'
+                    });
+                }
+            });
+        }
+    </script>
+}

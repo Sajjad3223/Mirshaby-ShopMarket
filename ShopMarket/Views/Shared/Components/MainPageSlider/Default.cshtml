@@ -1,0 +1,32 @@
+﻿@using ShopMarket.Core.Utilities
+@model IEnumerable<ShopMarket.Domain.ShopEntities.Slide>
+
+<div class="col-lg-8 ml-lg-0 mb-3">
+    <div class="main-slider">
+        <div class="swiper-container main-page-slider">
+            <div class="swiper-wrapper">
+                @foreach (var slide in Model)
+                {
+                    <div class="swiper-slide">
+                        <a href="@slide.SlideLink">
+                            <img src="@Directories.GetSlideImage(slide.SlideImage)" alt="product Image">
+                        </a>
+                    </div>
+                }
+            </div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+        <div class="swiper-container main-page-slider-thumbs d-none d-sm-block">
+            <div class="swiper-wrapper">
+                @foreach (var slide in Model)
+                {
+                    <div class="swiper-slide">
+                        <span>@slide.SlideContent</span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

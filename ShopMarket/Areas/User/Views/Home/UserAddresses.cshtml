@@ -1,0 +1,48 @@
+﻿@using ShopMarket.Core.Utilities
+@model int
+
+@{
+    ViewData["Title"] = "آدرس ها";
+}
+
+<div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="editAddressModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalTitle">ویرایش آدرس</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" id="ModalBody">
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section-title mb-2">
+    نشانی‌ها
+</div>
+<div class="checkout-section shadow-around">
+        @if (TempData["Result"]?.ToString() == "success")
+        {
+            <div class="alert alert-success">
+                آدرس با موفقیت ثبت شد!
+            </div>
+        }
+        else if(TempData["Result"]?.ToString() == "fail")
+        {
+            <div class="alert alert-danger">
+                در ثبت آدرس مشکلی پیش آمد!!!
+            </div>
+        }
+    <div class="checkout-section-content">
+        @await Component.InvokeAsync("UserAddresses",new
+        {
+            userId = Model
+        })
+    </div>
+</div>
+
+

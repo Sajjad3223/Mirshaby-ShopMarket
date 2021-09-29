@@ -1,0 +1,50 @@
+﻿@page "{id}"
+@model ShopMarket.Pages.Admin.Roles.Permissions.EditModel
+@{
+    ViewData["Title"] = "ویرایش دسترسی ";
+    ViewData["page"] = "roles";
+    ViewData["sub-page"] = "permissions";
+}
+
+<section id="multiple-column-form">
+    <div class="row match-height">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">ویرایش دسترسی</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <form class="form" method="post">
+                            <input type="hidden" asp-for="Permission.PermissionId"/>
+                            <div class="row">
+                                <div class="form-group col-md-6 col-12">
+                                    <div class="input-group align-items-center">
+                                        <label asp-for="Permission.PermissionTitle"></label>
+                                        <input asp-for="Permission.PermissionTitle" class="form-control" placeholder="عنوان دسترسی">
+                                        <span asp-validation-for="Permission.PermissionTitle"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6 col-12">
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" asp-for="Permission.ParentID">دسته بندی والد</label>
+                                        <select class="form-select" asp-for="Permission.ParentID" asp-items="@(ViewData["Permissions"] as SelectList)">
+                                            <option value="">----</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary me-1 mb-1">ثبت تغییرات</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

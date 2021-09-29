@@ -1,0 +1,46 @@
+﻿@page
+@model ShopMarket.Pages.Admin.Roles.IndexModel
+
+@{
+    ViewData["Title"] = "مدیریت نقش ها";
+    ViewData["page"] = "roles";
+    ViewData["sub-page"] = "roles";
+}
+
+<section class="section">
+    <div class="card">
+        <h3 class="card-header">
+            لیست نقش ها
+        </h3>
+        <div class="card-content">
+            <div class="card-body">
+                <a href="/admin/roles/create" class="btn btn-primary">افزودن نقش جدید</a>
+            </div>
+            <!-- table striped -->
+            <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th>آیدی نقش</th>
+                            <th>عنوان نقش</th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var role in Model.Roles)
+                        {
+                            <tr>
+                                <td >@role.RoleId</td>
+                                <td>@role.RoleTitle</td>
+                                <td>
+                                    <a class="btn btn-outline-warning" href="/admin/roles/edit/@role.RoleId">ویرایش نقش و دسترسی ها</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</section>

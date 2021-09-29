@@ -1,0 +1,57 @@
+﻿@using ShopMarket.Core.Utilities
+@model IEnumerable<ShopMarket.Core.ViewModels.ShopViewModels.OrderViewModels.OrderDetailItem>
+
+@foreach (var item in Model)
+{
+    <div class="cart-item py-4 px-3">
+        <div class="item-thumbnail">
+            <a href="/product/@item.ProductId">
+                <img src="@(Directories.GetProductImage(item.ImageName,item.ProductId))" alt="item">
+            </a>
+        </div>
+        <div class="item-info flex-grow-1">
+            <div class="item-title">
+                <h2>
+                    <a href="/product/@item.ProductId">@item.Title</a>
+                </h2>
+            </div>
+            <div class="item-detail">
+                <ul>
+                    @if (item.Color != null)
+                    {
+                        <li>
+                            <span class="color"
+                                  style="background-color: @item.Color.ToString();"></span>
+                            <span>@item.Color.ToString()</span>
+                        </li>
+                    }
+                    @if (item.Size != null)
+                    {
+                        <li>
+                            <span>اندازه</span>
+                            <strong class="mr-4">@item.Size.ToString()</strong>
+                        </li>
+                    }
+                    @if (item.Count  > 1)
+                    {
+                        <li>
+                            <span >تعداد</span>
+                            <strong class="mr-4">@item.Count.ToString()</strong>
+                        </li>
+                    }
+                    <li>
+                        <i class="far fa-store-alt text-muted"></i>
+                        <span>@item.SellerName</span>
+                    </li>
+                </ul>
+                <div class="item-quantity--item-price">
+                    <div class="item-price">
+                        <span class="text-muted"> قیمت :</span>
+                        @item.Price.ToString("N0")
+                        <span class="text-sm mr-1">تومان</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

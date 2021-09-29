@@ -1,0 +1,99 @@
+﻿@using ShopMarket.Core.Utilities
+@model ShopMarket.Core.ViewModels.UserViewModels.UserPanelViewModel
+@{
+    ViewData["Title"] = "پنل کاربری";
+}
+
+@if (TempData["Activated"]?.ToString() == "success")
+{
+    <div class="alert alert-success">
+        اکانت شما با موفقیت فعالسازی شد!
+    </div>
+}
+else if(TempData["Activated"]?.ToString() == "fail")
+{
+    <div class="alert alert-danger">
+        در فعال سازی اکانت شما مشکلی پیش آمد!
+    </div>
+}
+<div class="row mb-4">
+
+    <div class="col-lg-6 mb-lg-0 mb-3">
+        <div class="section-title mb-2">
+            اطلاعات شخصی
+        </div>
+        <section class="shadow-around p-3">
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="text-sm text-muted">نام و نام خانوادگی:</div>
+                    <div class="text-dark font-weight-bold">@Model.User.FullName</div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="text-sm text-muted">پست الکترونیک:</div>
+                    <div class="text-dark font-weight-bold">@Model.User.Email</div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="text-sm text-muted">شماره تلفن همراه:</div>
+                    <div class="text-dark font-weight-bold">@Model.User.PhoneNumber</div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="text-sm text-muted">کد ملی:</div>
+                    <div class="text-dark font-weight-bold">@(Model.User.NationalCode ?? "-")</div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="text-sm text-muted">دریافت خبرنامه:</div>
+                    <div class="text-dark font-weight-bold">@(Model.User.ReceiveNews ? "بله" : "خیر")</div>
+                </div>
+                <div class="col-12">
+                    <div class="text-center">
+                        <a href="/userpanel/edit" class="link--with-border-bottom">
+                            <i class="far fa-edit"></i>
+                            ویرایش اطلاعات شخصی
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-lg-6 mb-lg-0 mb-3">
+        <div class="section-title mb-2">
+            لیست آخرین علاقه‌مندی‌ها
+        </div>
+        <section class="shadow-around p-3">
+            <div class="row">
+                @foreach (var like in Model.LikedProducts)
+                {
+                    @await Component.InvokeAsync("LikedProduct", new
+                    {
+                        likedProductId = like.LikedId,
+                        productId = like.ProductId
+                    })
+                }
+                <div class="col-12">
+                    <div class="text-center">
+                        <a href="/userpanel/likes" class="link--with-border-bottom">
+                            <i class="far fa-edit"></i>
+                            مشاهده و ویرایش لیست مورد علاقه
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+    <div class="row">
+        <div class="col-12">
+            <div class="section-title mb-2">
+                آخرین سفارش‌ها
+            </div>
+            <section class="table--order shadow-around">
+                <partial name="_Orders" model="Model.Orders"/>
+                <div class="text-center py-3">
+                    <a href="/userpanel/orders" class="d-flex align-items-center justify-content-center text-dark">
+                        مشاهده لیست سفارش ها
+                        <i class="fal fa-arrow-to-left mr-1"></i>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>

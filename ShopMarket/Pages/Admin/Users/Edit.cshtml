@@ -1,0 +1,38 @@
+﻿@page "{userId}"
+@model ShopMarket.Pages.Admin.Users.EditModel
+@{
+    ViewData["Title"] = "ویرایش کاربر";
+    ViewData["page"] = "users";
+    ViewData["sub-page"] = "activeUsers";
+}
+
+<section class="section">
+    <h2> ویرایش حساب کاربر @Model.UserViewModel.FullName</h2>
+    <div class="card">
+        <form method="post" class="form row m-3">
+            <input type="hidden" asp-for="UserViewModel.UserId"/>
+            <input type="hidden" asp-for="UserViewModel.Password"/>
+            <div class="form-group col-6">
+                <label asp-for="UserViewModel.FullName" class="form-label"></label>
+                <input asp-for="UserViewModel.FullName" class="form-control"/>
+            </div>
+            <div class="form-group col-6">
+                <label asp-for="UserViewModel.Email" class="form-label"></label>
+                <input asp-for="UserViewModel.Email" class="form-control"/>
+            </div>
+            <div class="form-group col-6">
+                <label asp-for="UserViewModel.PhoneNumber" class="form-label"></label>
+                <input asp-for="UserViewModel.PhoneNumber" class="form-control"/>
+            </div>
+            <div class="form-group col-6">
+                <label asp-for="UserViewModel.NationalCode" class="form-label"></label>
+                <input asp-for="UserViewModel.NationalCode" class="form-control"/>
+            </div>
+            <div class="form-group col-6">
+                <label asp-for="UserViewModel.IsEmailVerified" class="form-label"></label>
+                <input asp-for="UserViewModel.IsEmailVerified" class="checkbox"/>
+            </div>
+            <button type="submit" class="btn btn-block btn-primary">ثبت تغییرات</button>
+        </form>
+    </div>
+</section>

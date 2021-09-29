@@ -1,0 +1,159 @@
+﻿@using System.Security.Claims
+
+@{
+    string name = "";
+    if (User.Identity.IsAuthenticated)
+    {
+        name = ((ClaimsIdentity)User.Identity)?.FindFirst(ClaimTypes.Name).Value ?? "";
+    }
+}
+
+<header class="page-header">
+    <div class="top-page-header">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="contact-list">
+                    <ul>
+                        <li><i class="fas fa-phone-rotary"></i><a href="tel: 09154222478">0915-422-2478</a></li>
+                        <li><i class="fas fa-envelope"></i><a href="mailto: m.sajjad1378@gmail.com">m.sajjad1378@gmail.com</a></li>
+                    </ul>
+                </div>
+                <div class="top-header-menu">
+                    <ul>
+                        <li><a href="/">خانه</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Search">فروشگاه</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="bottom-page-header">
+            <div class="d-flex align-items-center">
+                <div class="site-logo">
+                    <a href="/">
+                        <img src="/images/logo.png" alt="logo">
+                    </a>
+                </div>
+                <div class="search-box">
+                    <form action="/home/search/">
+                        <input type="text" name="search" placeholder="نام محصول یا برند را جستجو کنید...">
+                        <i class="far fa-search"></i>
+                    </form>
+                </div>
+            </div>
+            <div class="user-items">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @await Component.InvokeAsync("LikedItemsPreview")
+                    @await Component.InvokeAsync("CartPreview")
+                }
+            <div class="user-item account">
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <a asp-area="User" asp-controller="Account" asp-action="Login" class="btn-auth">
+                        <i class="fal fa-user-circle"></i>
+                        ورود و عضویت
+                    </a>
+                }
+                else
+                {
+                    <a asp-area="User" asp-controller="Home" asp-action="Index">
+                        @name
+                        <i class="fad fa-chevron-down text-sm mr-1"></i>
+                    </a>
+                    <ul class="dropdown--wrapper">
+                        <li class="header-profile-dropdown-account-container">
+                            <a asp-area="User" asp-controller="Home" asp-action="Index" class="d-block">
+                                <span class="header-profile-dropdown-user">
+                                    <span class="header-profile-dropdown-user-img">
+                                        <img src="/images/users/avatar.png">
+                                    </span>
+                                    <span class="header-profile-dropdown-user-info">
+                                        <p class="header-profile-dropdown-user-name">
+                                            @name
+                                        </p>
+                                        <span class="header-profile-dropdown-user-profile-link">
+                                            مشاهده حساب
+                                            کاربری
+                                        </span>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <hr>
+                        <li>
+                            <a asp-area="User" asp-controller="Home" asp-action="Index">
+                                پروفایل
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/userpanel/orders">
+                                مشاهده سفارشات
+                            </a>
+                        </li>
+                        <hr>
+                        <li>
+                            <a asp-area="User" asp-controller="Account" asp-action="Logout">
+                                خروج از حساب کاربری
+                            </a>
+                        </li>
+                    </ul>
+                }
+            </div>
+            </div>
+        </div>
+        @await Component.InvokeAsync("Categories")
+    </div>
+</header>
+
+
+<div class="header-responsive fixed--header-top">
+    <div class="header-top">
+        <div class="side-navigation-wrapper">
+            <button class="btn-toggle-side-navigation"><i class="far fa-bars"></i></button>
+            <div class="side-navigation">
+                <div class="site-logo">
+                    <a href="#">
+                        <img src="/images/logo.png" alt="logo">
+                    </a>
+                </div>
+                <div class="divider"></div>
+                <ul class="not-list-children">
+                    <li><a href="/"><i class="fal fa-apple-crate"></i> صفحه اصلی</a></li>
+                    <li><a href="/home/search"><i class="fal fa-badge-percent"></i> فروشگاه</a></li>
+                    <li><a href="#"><i class="fal fa-question"></i> سوالی دارید؟</a></li>
+                </ul>
+                <div class="divider"></div>
+                @await Component.InvokeAsync("CategoriesResponsive")
+            </div>
+            <div class="overlay-side-navigation"></div>
+        </div>
+        <div class="site-logo">
+            <a href="/">
+                <img src="/images/logo.png" alt="logo">
+            </a>
+        </div>
+        <div class="header-tools">
+            @await Component.InvokeAsync("CartPreviewResponsive")
+        </div>
+    </div>
+    <div class="header-bottom">
+        <div class="search-box">
+            <form action="/home/search/">
+                <input type="text" name="search" placeholder="نام محصول یا برند را جستجو کنید...">
+                <i class="far fa-search"></i>
+            </form>
+        </div>
+        <div class="header-tools">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a asp-area="User" asp-controller="Home" asp-action="Index"><i class="far fa-user-circle"></i></a>
+            }
+            else
+            {
+                <a asp-area="User" asp-controller="Account" asp-action="Login"><i class="far fa-user-circle"></i></a>
+            }
+        </div>
+    </div>
+</div>

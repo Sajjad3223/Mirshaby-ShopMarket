@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ShopMarket.Core.ViewModels.ShopViewModels.ProductCommentViewModel>
+@{
+    ViewData["Title"] = "نظرات";
+}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="section-title mb-2">
+            نظرات من
+        </div>
+        <section class="shadow-around p-3">
+            <div class="row">
+                @if (Model.Any())
+                {
+                    @foreach (var comment in Model)
+                    {
+                        <partial name="_ProductComment" model="comment"/>
+                    }
+                }
+                else
+                {
+                    <div class="empty-box col-12">
+                        <div class="icon">
+                            <i class="fal fa-times-circle"></i>
+                        </div>
+                        <div class="message">
+                            <p>نظری برای نمایش وجود نداره!</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+    </div>
+</div>

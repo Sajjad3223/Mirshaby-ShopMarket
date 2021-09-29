@@ -1,0 +1,23 @@
+﻿@model ShopMarket.Core.ViewModels.UserViewModels.UserAddressViewModel
+
+<div class="col-xl-3 col-lg-4 col-sm-6 mb-3">
+    <div class="custom-control custom-radio">
+        <input type="radio" id="address@(Model.AddressId)" name="customRadio" class="custom-control-input" checked="@Model.IsSelectedAddress" onclick="changeActiveAddress(@Model.AddressId)">
+        <label class="custom-control-label address-select" for="address@(Model.AddressId)">
+            <span class="head-address-select">به این آدرس ارسال شود</span>
+            <span>@Model.State،@Model.City،@Model.Street</span>
+            <span>
+                <i class="fa fa-user"></i>
+                @Model.ReceiverName
+            </span>
+            <span>
+                <i class="fa fa-phone"></i>
+                @Model.ReceiverPhone
+            </span>
+            <a href="#" class="link--with-border-bottom edit-address-btn" data-toggle="modal" data-target="#editAddressModal" onclick="EditAddress(@Model.AddressId)">
+                ویرایش
+                <i class="fa fa-edit"></i>
+            </a>
+        </label>
+    </div>
+</div>

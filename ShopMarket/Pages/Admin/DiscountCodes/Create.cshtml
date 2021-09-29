@@ -1,0 +1,33 @@
+﻿@page
+@model ShopMarket.Pages.Admin.DiscountCodes.CreateModel
+@{
+    ViewData["Title"] = "مدیریت تخفیفات";
+    ViewData["page"] = "discount";
+    ViewData["sub-page"] = "discount";
+}
+
+
+<section class="section">
+    <h2>افزودن تخفیف جدید</h2>
+    <div class="card">
+        <form method="post" class="form row m-3">
+            <div class="form-group col-6">
+                <label asp-for="DiscountCode.Code" class="form-label"></label>
+                <input asp-for="DiscountCode.Code" class="form-control" />
+            </div>
+            <div class="form-group col-6">
+                <label asp-for="DiscountCode.Discount" class="form-label"></label>
+                <input asp-for="DiscountCode.Discount" type="number" max="100" min="0" class="form-control" />
+            </div>
+            <div class="form-group col-6">
+                <label asp-for="DiscountCode.CodeCount" class="form-label"></label>
+                <input asp-for="DiscountCode.CodeCount" type="number" min="1" class="form-control" />
+            </div>
+            <div class="form-group col-6">
+                <label asp-for="DiscountCode.ExpireTime" class="form-label"></label>
+                <input asp-for="DiscountCode.ExpireTime" type="date" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-block btn-primary">افزودن کد تخفیف</button>
+        </form>
+    </div>
+</section>

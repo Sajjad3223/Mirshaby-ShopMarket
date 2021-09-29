@@ -1,0 +1,60 @@
+﻿@model ShopMarket.Core.ViewModels.ShopViewModels.OrderViewModels.OrderViewModel
+@{
+    ViewData["Title"] = "پرداخت ناموفق";
+}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-xl-9 col-lg-8 col-md-8 mb-md-0 mb-3">
+            <div class="checkout-section shadow-around">
+                <div class="checkout-step">
+                    <ul>
+                        <li class="active">
+                            <a href="#"><span>سبد خرید</span></a>
+                        </li>
+                        <li class="active">
+                            <span>نحوه ارسال و پرداخت</span>
+                        </li>
+                        <li class="active">
+                            <span>اتمام خرید و ارسال</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checkout-message">
+                    <div class="checkout-message-failed mb-3">
+                        <div class="icon-message failed-icon">
+                            <i class="fas fa-times"></i>
+                        </div>
+                        سفارش <span class="order-code">@Model.OrderId</span> ثبت شد اما پرداخت ناموفق بود.
+                    </div>
+                    <div class="text-center text-muted">
+                        <p class="mb-1">
+                            برای جلوگیری از لغو سیستمی سفارش، تا ۱ ساعت آینده پرداخت را انجام دهید.
+                        </p>
+                        <p class="text-sm">
+                            چنانچه طی این فرایند مبلغی از حساب شما کسر شده است، طی ۷۲ ساعت آینده به حساب شما
+                            باز خواهد گشت.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="product-carousel">
+        <div class="section-title">
+            <i class="fad fa-retweet"></i>
+            محصولات مرتبط
+        </div>
+        <div class="swiper-container slider-lg">
+            <div class="swiper-wrapper">
+                @await Component.InvokeAsync("RelatedProducts",new
+                {
+                    categoryId = 0,
+                    Tags=""
+                })
+            </div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+</div>

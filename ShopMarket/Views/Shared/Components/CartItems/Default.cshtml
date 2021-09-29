@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ShopMarket.Core.ViewModels.ShopViewModels.OrderViewModels.CartItemViewModel>
+
+    <div class="checkout-section-content">
+        <div class="cart-items">
+            @if (Model.Any())
+            {
+                @foreach (var item in Model)
+                {
+                    <partial name="_OrderItem" model="item" />
+                }
+            }
+        </div>
+    </div>

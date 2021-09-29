@@ -1,0 +1,92 @@
+﻿@page
+@using ShopMarket.Core.Utilities
+@model ShopMarket.Pages.Admin.Categories.IndexModel
+
+@{
+    ViewData["Title"] = "دسته بندی های بخش محصولات";
+}
+
+<section class="section">
+    <div class="card">
+        <h3 class="card-header">
+            لیست دسته بندی ها
+        </h3>
+        <div class="card-body">
+            <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+                <a href="/admin/categories/create" class="btn btn-primary">افزودن دسته بندی جدید</a>
+                <div class="dataTable-container m-2">
+                    <table class="table table-striped dataTable-table" id="table1">
+                        <div class="row d-flex align-items-center border-bottom text-center">
+                            <div class="col-2">تصویر</div>
+                            <div class="col-5">عنوان</div>
+                            <div class="col-3">نمایش در صفحه اصلی</div>
+                            <div class="col-2">عملیات</div>
+                        </div>
+                        @foreach (var item in Model.ShopCategoryDto.ShopCategories.Where(c => c.ParentId == null))
+                        {
+                    <div class="row d-flex align-items-center m-2 border border-primary border-2 rounded-pill">
+                        <img src="@(Directories.GetCategoryImage(item.CategoryImage))" class="rounded-circle text-center col-2" style="width: 100px; " alt="category image" />
+                        <div class="col-5 text-center">@Html.DisplayFor(modelItem => item.Title)</div>
+                        <div class="col-3 text-center">@Html.DisplayFor(modelItem => item.ShowInMainPage)</div>
+                        <div class="col-1 text-center">
+                            <a href="/admin/categories/edit/@item.CategoryId" class="btn btn-sm btn-outline-warning">
+                                ویرایش
+                            </a>
+                        </div>
+                        <div class="col-1 text-center">
+                            <a href="/admin/categories/delete/@item.CategoryId" class="btn btn-sm btn-outline-danger">
+                                حذف
+                            </a>
+                        </div>
+                    </div>
+                            if (Model.ShopCategoryDto.ShopCategories.Any(c => c.ParentId == item.CategoryId))
+                            {
+                                foreach(var subCategory in Model.ShopCategoryDto.ShopCategories.Where(c => c.ParentId == item.CategoryId))
+                                {
+                                    <div class="row d-flex align-items-center border m-2 border-danger border-2 rounded-pill" style="margin-right: 4em !important;">
+                                        <img src="@(Directories.GetCategoryImage(subCategory.CategoryImage))" class="rounded-circle text-center col-2" style="max-width: 100px;" alt="category image" />
+                                        <div class="col-5 text-center">@Html.DisplayFor(modelItem => subCategory.Title)</div>
+                                        <div class="col-3 text-center">@Html.DisplayFor(modelItem => subCategory.ShowInMainPage)</div>
+                                        <div class="col-1 text-center">
+                                            <a href="/admin/categories/edit/@subCategory.CategoryId" class="btn btn-sm btn-outline-warning">
+                                                ویرایش
+                                            </a>
+                                        </div>
+                                        <div class="col-1 text-center">
+                                            <a href="/admin/categories/delete/@subCategory.CategoryId" onclick="deleteCategory(@subCategory.CategoryId)" class="btn btn-sm btn-outline-danger">
+                                                حذف
+                                            </a>
+                                        </div>
+                                    </div>
+                                    if (Model.ShopCategoryDto.ShopCategories.Any(c => c.ParentId == subCategory.CategoryId))
+                                    {
+                                        foreach(var cat in Model.ShopCategoryDto.ShopCategories.Where(c => c.ParentId == subCategory.CategoryId))
+                                        {
+                                            <div class="row d-flex align-items-center border m-2 border-warning border-2 rounded-pill" style="margin-right: 6em !important;">
+                                                <img src="@(Directories.GetCategoryImage(cat.CategoryImage))" class="rounded-circle text-center col-2" style="max-width: 100px;" alt="category image" />
+                                                <div class="col-5 text-center">@Html.DisplayFor(modelItem => cat.Title)</div>
+                                                <div class="col-3 text-center">@Html.DisplayFor(modelItem => cat.ShowInMainPage)</div>
+                                                <div class="col-1 text-center">
+                                                    <a href="/admin/categories/edit/@cat.CategoryId" class="btn btn-sm btn-outline-warning">
+                                                        ویرایش
+                                                    </a>
+                                                </div>
+                                                <div class="col-1 text-center">
+                                                    <a href="/admin/categories/delete/@cat.CategoryId" onclick="deleteCategory(@cat.CategoryId)" class="btn btn-sm btn-outline-danger">
+                                                        حذف
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

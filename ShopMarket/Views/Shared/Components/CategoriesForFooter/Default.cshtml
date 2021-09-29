@@ -1,0 +1,16 @@
+﻿@model IEnumerable<ShopMarket.Core.ViewModels.ShopViewModels.ProductViewModels.ShopCategoryViewModel>
+
+
+<div class="widget widget-links">
+    <h2 class="widget-title">دسته بندی کالاها</h2>
+    <ul class="widget-list">
+        @foreach (var category in Model)
+        {
+            <li class="widget-list-item">
+                <a asp-area="" asp-controller="Home" asp-action="Search" asp-route-categoryId="@category.CategoryId" class="widget-list-link">
+                    @category.Title
+                </a>
+            </li>
+        }
+    </ul>
+</div>

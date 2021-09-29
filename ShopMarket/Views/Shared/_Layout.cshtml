@@ -1,0 +1,42 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <partial name="Layot Contents/_Styles" />
+    @await RenderSectionAsync("Style", false)
+</head>
+
+<body>
+
+    <div class="page-wrapper">
+
+
+        <partial name="Layot Contents/_Header"/>
+
+
+        <main class="page-content">
+            @RenderBody()
+        </main>
+
+
+        <partial name="Layot Contents/_ColorSwitcher" />
+
+
+        <partial name="Layot Contents/_Loader" />
+
+        <partial name="Layot Contents/_Footer" />
+
+    </div>
+
+
+
+    <partial name="Layot Contents/_Scripts" />
+
+    @await RenderSectionAsync("Script", false)
+</body>
+
+</html>

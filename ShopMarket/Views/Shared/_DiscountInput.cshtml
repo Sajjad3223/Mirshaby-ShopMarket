@@ -1,0 +1,19 @@
+﻿@model int
+
+<div class="col-md-6">
+    <div class="checkout-section-title">کد تخفیف</div>
+    <form action="#" >
+        <div class="d-flex align-items-center">
+            <div class="form-element-row flex-grow-1">
+                <input type="text" class="input-element" id="DiscountCode"
+                       placeholder="کد تخفیف را وارد کنید">
+            </div>
+            <div class="form-element-row mr-3">
+                <button class="btn-element btn-info-element" onclick="ApplyDiscount(@Model)">
+                    <i class="fad fa-sync"></i>
+                    ثبت
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

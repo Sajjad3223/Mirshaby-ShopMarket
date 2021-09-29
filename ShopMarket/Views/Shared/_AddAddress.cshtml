@@ -1,0 +1,75 @@
+﻿@model ShopMarket.Core.ViewModels.UserViewModels.UserAddressViewModel
+
+<form asp-area="User" asp-controller="Home" asp-action="AddAddress" method="post">
+    <div class="row">
+        <div class="col-lg-6 mb-3">
+            <div class="text-sm text-muted mb-1">نام و نام خانوادگی:</div>
+            <div class="text-dark font-weight-bold">
+                <div class="form-element-row mb-0">
+                    <input asp-for="ReceiverName" class="input-element" placeholder="نام و نام خانوادگی دریافت کننده">
+                    <span asp-validation-for="ReceiverName"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-3">
+            <div class="text-sm text-muted mb-1">شماره موبایل:</div>
+            <div class="text-dark font-weight-bold">
+                <div class="form-element-row mb-0">
+                    <input asp-for="ReceiverPhone" class="input-element dir-ltr" placeholder="09*********">
+                    <span asp-validation-for="ReceiverName"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-3">
+            <div class="text-sm text-muted mb-1">استان:</div>
+            <div class="text-dark font-weight-bold">
+                <div class="form-element-row mb-0">
+                    <input asp-for="State" class="input-element dir-rtl">
+                    <span asp-validation-for="State"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-3">
+            <div class="text-sm text-muted mb-1">شهر:</div>
+            <div class="text-dark font-weight-bold">
+                <div class="form-element-row mb-0">
+                    <input asp-for="City" class="input-element dir-rtl">
+                    <span asp-validation-for="City"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 mb-3">
+            <div class="text-sm text-muted mb-1">خیابان:</div>
+            <div class="text-dark font-weight-bold">
+                <div class="form-element-row mb-0">
+                    <input asp-for="Street" class="input-element dir-rtl">
+                    <span asp-validation-for="Street"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 mb-3">
+            <div class="text-sm text-muted mb-1">آدرس کامل:</div>
+            <div class="text-dark font-weight-bold">
+                <div class="form-element-row mb-0">
+                    <textarea asp-for="FullAddress" cols="30" rows="10" class="input-element"></textarea>
+                    <span asp-validation-for="FullAddress"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-5 mb-3">
+            <div class="text-sm text-muted mb-1">پلاک:</div>
+            <div class="text-dark font-weight-bold">
+                <div class="form-element-row mb-0">
+                    <input asp-for="Plaque" class="input-element dir-ltr">
+                    <span asp-validation-for="Plaque"></span>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="col-4 btn btn-primary">ذخیره تغییرات <i class="fad fa-money-check-edit"></i></button>
+    </div>
+</form>
+
+@section Script
+{
+    <partial name="_ValidationScriptsPartial" />
+}

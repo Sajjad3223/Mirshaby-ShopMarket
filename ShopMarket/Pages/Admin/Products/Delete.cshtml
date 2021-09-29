@@ -1,0 +1,26 @@
+﻿@page "{id}"
+@model ShopMarket.Pages.Admin.Products.DeleteModel
+@{
+    ViewData["Title"] = "حذف کالا";
+}
+
+<h1> آیا از حذف کالای زیر مطمئن هستید؟</h1>
+<div class="row m-4">
+    <div class="col-12">
+        <span class="col-4 h5 text-info">عنوان کالا:</span>
+        <strong class="col-8 h3 text-primary">@Model.ProductViewModel.Title</strong>
+    </div>
+    <div class="col-12">
+        <span class="col-4 h5 text-info">قیمت کالا:</span>
+        <strong class="col-8 h3 text-primary">@Model.ProductViewModel.Price</strong>
+    </div>
+    <div class="col-12">
+        <span class="col-4 h5 text-info">موجودی کالا:</span>
+        <strong class="col-8 h3 text-primary">@Model.ProductViewModel.Remaining</strong>
+    </div>
+    <form method="post" class="form col-12 m-3">
+        <input type="hidden" asp-for="ProductViewModel.ProductId" />
+        <button type="submit" class="btn btn-danger btn-block rounded-pill">حذف کالا</button>
+        <a asp-page="Index" class="my-4 btn btn-block btn-outline-info rounded-pill">بازگشت به صفحه کالا ها</a>
+    </form>
+</div>

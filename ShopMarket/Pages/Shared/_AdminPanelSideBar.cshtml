@@ -1,0 +1,123 @@
+﻿<div id="sidebar" class="active" dir="ltr">
+    <div class="sidebar-wrapper active">
+        <div class="sidebar-header">
+            <div class="d-flex justify-content-between">
+                <div class="logo">
+                    <a href="index.html"><img src="/admin-panel/images/logo/logo.png" alt="Logo" srcset=""></a>
+                </div>
+                <div class="toggler">
+                    <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-menu">
+            <ul class="menu">
+                <li class="sidebar-title text-center">منوی کاربری</li>
+
+                <li class="sidebar-item @(ViewData["page"]?.ToString() == "index" ? "active" : "")">
+                    <a href="/admin" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>داشبورد</span>
+                    </a>
+                </li>
+
+                <hr />
+
+                <li class="sidebar-title text-center">مدیریت</li>
+
+                <li class="sidebar-item has-sub @(ViewData["page"]?.ToString() == "users" ? "active" : "")">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-person"></i>
+                        <span>مدیریت کاربران</span>
+                    </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item @(ViewData["sub-page"]?.ToString() == "activeUsers" ? "active" : "")">
+                            <a href="/admin/users">کاربران فعال</a>
+                        </li>
+                        <li class="submenu-item @(ViewData["sub-page"]?.ToString() == "deletedUsers" ? "active" : "")">
+                            <a href="/admin/users/deletedUsers">کاربران غیر فعال</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item has-sub @(ViewData["page"]?.ToString() == "roles" ? "active" : "")">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-flag"></i>
+                        <span>مدیریت نقش ها</span>
+                    </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item @(ViewData["sub-page"]?.ToString() == "roles" ? "active" : "")">
+                            <a href="/admin/roles">نقش ها</a>
+                        </li>
+                        <li class="submenu-item @(ViewData["sub-page"]?.ToString() == "permissions" ? "active" : "")">
+                            <a href="/admin/roles/permissions">دسترسی ها</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item @(ViewData["page"]?.ToString() == "categories" ? "active" : "")">
+                    <a href="/admin/categories" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>مدیریت دسته بندی ها</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item has-sub @(ViewData["page"]?.ToString() == "stores" ? "active" : "")">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-shop"></i>
+                        <span>مدیریت فروشگاه ها</span>
+                    </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item @(ViewData["sub-page"]?.ToString() == "activeStores" ? "active" : "")">
+                            <a href="/admin/stores">فروشگاه های فعال</a>
+                        </li>
+                        <li class="submenu-item @(ViewData["sub-page"]?.ToString() == "deletedStores" ? "active" : "")">
+                            <a href="/admin/stores/deletedStores">فروشگاه های غیر فعال</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <hr />
+
+                <li class="sidebar-title text-center">کالا و سفارشات</li>
+
+                <li class="sidebar-item has-sub @(ViewData["page"]?.ToString() == "products" ? "active" : "")">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-box"></i>
+                        <span>کالا ها</span>
+                    </a>
+                    <ul class="submenu">
+                        <li class="submenu-item @(ViewData["sub-page"]?.ToString() == "activeProducts" ? "active" : "")">
+                            <a href="/admin/products">کالا های فعال</a>
+                        </li>
+                        <li class="submenu-item @(ViewData["sub-page"]?.ToString() == "deletedProducts" ? "active" : "")">
+                            <a href="/admin/products/DeletedProducts">کالا های حذف شده</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item @(ViewData["page"]?.ToString() == "tickets" ? "active" : "")">
+                    <a href="/admin/tickets" class='sidebar-link'>
+                        <i class="bi bi-mailbox"></i>
+                        <span>تیکت ها</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item @(ViewData["page"]?.ToString() == "orders" ? "active" : "")">
+                    <a href="/admin/orders" class='sidebar-link'>
+                        <i class="bi bi-list-ol"></i>
+                        <span>سفارش ها</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item @(ViewData["page"]?.ToString() == "discount" ? "active" : "")">
+                    <a href="/admin/discountcodes" class='sidebar-link'>
+                        <i class="bi bi-tag"></i>
+                        <span>کد های تخفیف</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+﻿@page "{id}"
+@model ShopMarket.Pages.Admin.Roles.Permissions.DeleteModel
+@{
+    ViewData["Title"] = "حذف دسترسی ";
+    ViewData["page"] = "roles";
+    ViewData["sub-page"] = "permissions";
+}
+
+<div class="card">
+    <div class="card-header">
+        حذف دسترسی
+    </div>
+    <div class="card-body">
+        <form method="post">
+            <input type="hidden" asp-for="Id"/>
+            <h1> آیا از حذف دسترسی @Model.PermissionTitle مطمئن هستید؟</h1>
+
+            <a asp-page="index" class="btn btn-link">بازگشت به صفحه دسترسی ها</a>
+            <button type="submit" class="btn btn-danger">حذف دسترسی</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,186 @@
+﻿@page
+@using ShopMarket.Core.Utilities
+@using ShopMarket.Core.Utilities.Convertors
+@using ShopMarket.Core.DTOs
+@using ShopMarket.Domain.ShopEntities
+@model ShopMarket.Pages.Admin.Products.IndexModel
+@{
+    ViewData["Title"] = "مدیریت کالا ها";
+    ViewData["page"] = "products";
+    ViewData["sub-page"] = "activeProducts";
+    ViewBag.PageId = Model.ProductDto.Filter.PageId;
+}
+
+@section Styles
+{
+    <style>
+        .card-body img {
+            max-width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="/admin-panel/vendors/sweetalert2/sweetalert2.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/theme.css">
+}
+
+<div class="container card p-3">
+    @if (!string.IsNullOrEmpty(TempData["Result"]?.ToString()))
+    {
+        <div class="alert alert-success">
+            @TempData["Result"].ToString()
+        </div>
+    }
+    <div class="row">
+        <div>
+            <a href="/admin/products/create" class="btn btn-primary">افزودن کالای جدید</a>
+        </div>
+        <!-- filter section -->
+        <div class="divider">
+            <div class="divider-text">
+                فیلتر
+            </div>
+        </div>
+        <div class="col-12 card-header">
+            <form class="form row" id="filterForm">
+                <input type="hidden" asp-for="Filter.PageId" id="pageId" />
+                <div class="form-group col-4">
+                    <label asp-for="Filter.StoreId"></label>
+                    <select asp-for="Filter.StoreId" class="form-control" asp-items="@(ViewData["Stores"] as SelectList)">
+                        <option value="">همه</option>
+                    </select>
+                </div>
+                <div class="form-group col-5">
+                    <label asp-for="Filter.CategoryId"></label>
+                    <select asp-for="Filter.CategoryId" class="form-control" asp-items="@(ViewData["Categories"] as SelectList)">
+                        <option value="">همه</option>
+                    </select>
+                </div>
+                <div class="form-group col-3">
+                    <label asp-for="Filter.Take"></label>
+                    <input asp-for="Filter.Take" class="form-control" />
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="Filter.Search"></label>
+                    <input asp-for="Filter.Search" class="form-control" placeholder="عنوان ، کلمه کلیدی ، توضیحات" />
+                </div>
+                <div class="form-group col-3">
+                    <label>طبقه بندی بر اساس</label>
+                    <select name="EOrderByType" class="form-control">
+                        @foreach (var type in Enum.GetNames(typeof(EOrderByType)))
+                        {
+                            <option value="@type">@type</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group col-3">
+                    <label>مرتب سازی بر اساس</label>
+                    <select name="EOrderBy" class="form-control">
+                        @foreach (var sort in Enum.GetNames(typeof(EOrderBy)))
+                        {
+                            <option value="@sort">@sort</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="Filter.MinimumPrice"></label>
+                    <input asp-for="Filter.MinimumPrice" class="form-control" />
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="Filter.MaximumPrice"></label>
+                    <input asp-for="Filter.MaximumPrice" class="form-control" />
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="Filter.Remaining"></label>
+                    <input asp-for="Filter.Remaining" class="form-control" />
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="Filter.Color"></label>
+                    <select asp-for="Filter.Color" class="form-control">
+                        <option value="">همه</option>
+                        @foreach (var color in Enum.GetNames(typeof(EColor)))
+                        {
+                            <option value="@color">@color</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="Filter.Size"></label>
+                    <select asp-for="Filter.Size" class="form-control">
+                        <option value="">همه</option>
+                        @foreach (var size in Enum.GetNames(typeof(ESize)))
+                        {
+                            <option value="@size">@size</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group col-4 align-self-center m-auto text-center">
+                    <div class="checkbox">
+                        <label asp-for="Filter.JustIsAvailable"></label>
+                        <input asp-for="Filter.JustIsAvailable" class="form-check-input">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-warning mb-2">اعمال فیلتر ها</button>
+                <button type="reset" class="btn btn-outline-dark">حذف فیلتر ها</button>
+            </form>
+        </div>
+        <div class="divider">
+            <div class="divider-text">
+                کالا ها
+            </div>
+        </div>
+        <div class="card-body row ">
+            @foreach (var product in Model.Products)
+            {
+                <div class="card col-4 border border-1 border-primary">
+                    <a href="">
+                        <img src="@(Directories.GetProductImage(product.MainImage, product.ProductId))" class="card-img-top" alt="product image">
+                    </a>
+                    <div class="card-body">
+                        <h3 class="card-title">@product.Title</h3>
+                        @{
+                            var description = (product.Description.Length > 200) ? (product.Description.Substring(0, 200) + "......") : product.Description;
+                        }
+                        <p class="card-text">@Html.Raw(description)</p>
+                        <p class="card-text "><small class="text-muted">@product.CreationDate.ToShamsi()</small></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/admin/products/edit/@product.ProductId" class="btn btn-sm btn-outline-warning">ویرایش کالا</a>
+                        <a href="/admin/products/delete/@product.ProductId" class="btn btn-sm btn-outline-danger">حذف کالا</a>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div class="card-footer">
+            <partial name="_Pagination" model="Model.ProductDto.PageCount" />
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    @if (!string.IsNullOrEmpty(TempData["Result"]?.ToString()))
+    {
+        <script src="/admin-panel/vendors/sweetalert2/sweetalert2.all.min.js"></script>
+        <script>
+            @{
+                var message = @TempData["Result"].ToString();
+            }
+            $(function() {
+                Swal.fire({
+                    icon: "success",
+                    title: "@message"
+                });
+            });
+        </script>
+    }
+
+
+    <script>
+        function ChangePage(pageId) {
+            event.preventDefault();
+            $("#pageId").val(pageId);
+            document.getElementById("filterForm").submit();
+        }
+    </script>
+}

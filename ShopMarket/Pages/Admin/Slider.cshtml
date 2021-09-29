@@ -1,0 +1,130 @@
+﻿@page
+@using ShopMarket.Core.Utilities
+@model ShopMarket.Pages.Admin.SliderModel
+@{
+    ViewData["Title"] = "مدیریت اسلایدر";
+    ViewData["page"] = "index";
+}
+
+<section>
+    <div class="card">
+        <div class="m-3">
+            <form class="form row" method="post" enctype="multipart/form-data">
+                <div id="slides">
+                    @if (Model.Slides.Any())
+                    {
+                        @foreach (var slide in Model.Slides)
+                        {
+                            <div class="row">
+                                <div class=" m-2 col-md-5 col-sm-12">
+                                    <label class="input-group-text">
+                                        <i class="bi bi-upload mx-2"></i>
+                                        آپلود تصویر
+                                    </label>
+                                    <input type="file" name="slide_Images" class="form-control slide-Image" accept="image/*">
+                                    <img class="img-thumbnail " style="max-width: 100%" src="@(Directories.GetSlideImage(slide.SlideImage))" />
+                                </div>
+                                <div class=" m-2 col-md-6 col-sm-12">
+                                    <label class="input-group-text">
+                                        پانویس تصویر
+                                    </label>
+                                    <input type="text" class="form-control slide-text" value="@slide.SlideContent" name="slide_texts">
+                                </div>
+                                <div class="m-2 col-12">
+                                    <label class="input-group-text bg-warning text-light">
+                                        لینک صفحه
+                                    </label>
+                                    <input type="text" class="form-control slide-link" value="@slide.SlideLink" name="slide_links">
+                                </div>
+                            </div>
+                            <hr />
+                        }
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class=" m-2 col-md-5 col-sm-12">
+                                <label class="input-group-text">
+                                    <i class="bi bi-upload mx-2"></i>
+                                    آپلود تصویر
+                                </label>
+                                <input type="file" name="slide_Images" class="form-control slide-Image" accept="image/*">
+                                <img class="img-thumbnail " style="max-width: 100%" src="" />
+                            </div>
+                            <div class=" m-2 col-md-6 col-sm-12">
+                                <label class="input-group-text">
+                                    پانویس تصویر
+                                </label>
+                                <input type="text" class="form-control slide-text" name="slide_texts">
+                            </div>
+                            <div class="m-2 col-12">
+                                <label class="input-group-text bg-warning text-light">
+                                    لینک صفحه
+                                </label>
+                                <input type="text" class="form-control slide-link" name="slide_links">
+                            </div>
+                        </div>
+                        <hr />
+                    }
+
+                </div>
+                <a class="btn btn-outline-info col-11 mx-auto my-3" id="add-slide">افزودن اسلاید +</a>
+                <button type="submit" class="btn btn-primary col-12">ثبت اسلاید ها</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts
+{
+    <script>
+        $('#add-slide').click(event => {
+            event.preventDefault();
+
+            var slideDiv = $('<div class="row">');
+            
+            var imageInputDiv = $('<div class=" m-2 col-md-5 col-sm-12">');
+            var textInputDiv = $('<div class=" m-2 col-md-6 col-sm-12">');
+            var linkInputDiv = $('<div class="m-2 col-12">');
+            var uploadLabel = $('<label class="input-group-text">');
+            var textLabel = $('<label class="input-group-text">');
+            var linkLabel = $('<label class="input-group-text bg-warning text-light">');
+            var uploadIcon = $('<i class="bi bi-upload mx-2"></i>');
+            var imageInput = $('<input type="file" name="slide_Images" class="form-control slide-Image" accept="image/*">');
+            var imagePreview = $('<img class="img-thumbnail" style="max-width: 100%" src="" />');
+            var textInput = $('<input type="text" class="form-control slide-text" name="slide_texts">');
+            var linkInput = $('<input type="text" class="form-control slide-link" name="slide_links">');
+            
+            $(uploadLabel).append(uploadIcon);
+
+            $(uploadLabel).text("آپلود تصویر");
+            $(textLabel).text("پانویس تصویر");
+            $(linkLabel).text("لینک صفحه");
+
+            $(imageInputDiv).append(uploadLabel, imageInput, imagePreview);
+            $(textInputDiv).append(textLabel, textInput);
+            $(linkInputDiv).append(linkLabel, linkInput);
+            
+            $(slideDiv).append(imageInputDiv, textInputDiv, linkInputDiv, $('<hr/>'));
+
+            $("#slides").append(slideDiv);
+        })
+
+        function PreviewMainImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $(input).siblings('img').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#slides").on('change','input.slide-Image',function () {
+            PreviewMainImage(this);
+        });
+
+    </script>
+}

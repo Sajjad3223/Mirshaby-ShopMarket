@@ -1,0 +1,37 @@
+﻿@using ShopMarket.Core.Utilities
+@model ShopMarket.Core.ViewModels.ShopViewModels.OrderViewModels.CartItemViewModel
+@{
+    var Price = Model.Price * Model.Count;
+}
+<li class="cart-item">
+    <span class="d-flex align-items-center mb-2">
+        <a href="/product/@Model.ProductId">
+            <img src="@(Directories.GetProductImage(Model.MainImage,Model.ProductId))" alt="Cart Image">
+        </a>
+        <span>
+            <a href="/product/@Model.ProductId">
+                <span class="title-item">
+                    @Model.Title
+                </span>
+            </a>
+            @if (Model.Count > 1)
+            {
+                <div class="color d-flex align-items-center">
+                    تعداد:
+                    <span class="badge-info text-center"> @Model.Count</span>
+                </div>
+            }
+            @if (Model.Color != null)
+            {
+                <span class="color d-flex align-items-center">
+                    رنگ:
+                    <span style="background-color: @Model.Color.ToString();"></span>
+                </span>
+            }
+        </span>
+    </span>
+    <span class="price">@Price.ToString("N0") تومان</span>
+    <button class="remove-item" onclick="RemoveCartItem(@Model.ItemId)">
+        <i class="far fa-trash-alt"></i>
+    </button>
+</li>

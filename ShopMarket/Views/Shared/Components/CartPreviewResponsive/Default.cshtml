@@ -1,0 +1,65 @@
+﻿@using ShopMarket.Core.Utilities
+@model IEnumerable<ShopMarket.Core.ViewModels.ShopViewModels.OrderViewModels.CartItemViewModel>
+
+    <div class="cart-side">
+        <a href="#" class="btn-toggle-cart-side ml-0">
+            <i class="far fa-shopping-basket"></i>
+            <span class="bag-items-number">@Model.Count()</span>
+        </a>
+        <div class="cart-side-content">
+            <ul>
+                <li class="cart-items">
+                    <ul>
+                       @foreach (var item in Model)
+                       {
+                           <li class="cart-item">
+                               <span class="d-flex align-items-center mb-2">
+                                   <a href="/product/@item.ProductId">
+                                       <img src="@(Directories.GetProductImage(item.MainImage,item.ProductId))" alt="Product Image">
+                                   </a>
+                                   <span>
+                                       <a href="/product/@item.ProductId">
+                                           <span class="title-item">
+                                               @item.Title
+                                           </span>
+                                       </a>
+                                       @if (item.Count > 1)
+                                       {
+                                           <div class="color d-flex align-items-center">
+                                               تعداد:
+                                               <span class="badge-info text-center"> @item.Count</span>
+                                           </div>
+                                       }
+                                       @if (item.Color != null)
+                                       {
+                                           <span class="color d-flex align-items-center">
+                                               رنگ:
+                                               <span style="background-color: @item.Color.ToString();"></span>
+                                           </span>
+                                       }
+                                   </span>
+                               </span>
+                               <span class="price">@item.Price تومان</span>
+                               <button class="remove-item" onclick="RemoveCartItem(@item.ItemId)">
+                                   <i class="far fa-trash-alt"></i>
+                               </button>
+                           </li>
+                       }
+                    </ul>
+                </li>
+                <li class="cart-footer">
+                    <span class="d-block text-center mb-3">
+                        مبلغ کل:
+                        <span class="total">@ViewBag.TotalPrice?.ToString("N0") تومان</span>
+                    </span>
+                    <span class="d-block text-center px-2">
+                        <a asp-area="" asp-controller="Order" asp-action="ShowOrder" class="btn-cart">
+                            مشاهده سبد خرید
+                            <i class="mi mi-ShoppingCart"></i>
+                        </a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="overlay-cart-side"></div>
+    </div>

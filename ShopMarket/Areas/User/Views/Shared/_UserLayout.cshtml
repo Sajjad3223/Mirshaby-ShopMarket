@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "_Layout";
+}
+@section Style
+{
+    @RenderSection("Style", false)
+}
+<div class="container" style="transform: none;">
+    <div class="row mb-5" style="transform: none;">
+        <div class="col-lg-3 col-md-4 mb-md-0 mb-3 sticky-sidebar" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+            @await Component.InvokeAsync("UserSideBar")
+        </div>
+        <div class="col-lg-9 col-md-8">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+@section Script
+{
+    @RenderSection("Script", false)
+    <script>
+        $('#verifyEmail').on('click', function (event) {
+            event.preventDefault();
+            $.get("/userpanel/verifyemail");
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                }
+            });
+
+            Toast.fire({
+                icon: 'success',
+                title: 'ایمیل تایید برای شما ارسال شد'
+            });
+        });
+    </script>
+}

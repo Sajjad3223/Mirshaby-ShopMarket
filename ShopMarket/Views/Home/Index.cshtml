@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "صفحه اصلی";
+}
+
+<div class="container">
+    <div class="row mb-4">
+        @await Component.InvokeAsync("MainPageSlider")
+        @await Component.InvokeAsync("TopCategories")
+    </div>
+    <div class="row align-items-center mb-4">
+        @await Component.InvokeAsync("TopCategories",new{ skip = 2 })
+       @await Component.InvokeAsync("SpecialSells")
+    </div>
+    @await Component.InvokeAsync("RandomCategoryProducts")
+    @await Component.InvokeAsync("MostVisited")
+</div>

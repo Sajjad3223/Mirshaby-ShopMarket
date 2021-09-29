@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ShopMarket.Core.ViewModels.ShopViewModels.ProductViewModels.LikedProductViewModel>
+@{
+    ViewData["Title"] = "پسندیده ها";
+}
+<div class="section-title mb-2">
+    لیست علاقه‌مندی‌ها
+</div>
+<div class="shadow-around">
+    <div class="listing-items row">
+        @if (Model.Any())
+        {
+            @foreach (var like in Model)
+            {
+                <partial name="_LikedProduct" model="like" />
+            }
+        }
+        else
+        {
+            <div class="empty-box col-12">
+                <div class="icon">
+                    <i class="fal fa-times-circle"></i>
+                </div>
+                <div class="message">
+                    <p>کالای محبوبی برای نمایش وجود نداره!</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>

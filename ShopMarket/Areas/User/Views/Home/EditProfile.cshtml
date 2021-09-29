@@ -1,0 +1,82 @@
+﻿@using ShopMarket.Core.Utilities
+@model ShopMarket.Core.ViewModels.UserViewModels.UserViewModel
+@{
+    ViewData["Title"] = "مشخصات کاربری";
+}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="section-title mb-2">
+            اطلاعات شخصی
+        </div>
+        <section class="shadow-around p-3">
+            <form action="/userpanel/edit" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-lg-6 mb-5">
+                        <div class="text-sm text-muted mb-3">نام و نام خانوادگی:</div>
+                        <div class="text-dark font-weight-bold">
+                            <div class="form-element-row mb-0">
+                                <input asp-for="FullName" class="input-element">
+                                <span asp-validation-for="FullName"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-5">
+                        <div class="text-sm text-muted mb-3">پست الکترونیک:</div>
+                        <div class="text-dark font-weight-bold">
+                            <div class="form-element-row mb-0">
+                                <input asp-for="Email" class="input-element" placeholder="example@gmail.com">
+                                <span asp-validation-for="Email"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-5">
+                        <div class="text-sm text-muted mb-3">شماره تلفن همراه:</div>
+                        <div class="text-dark font-weight-bold">
+                            <div class="form-element-row mb-0">
+                                <input asp-for="PhoneNumber" class="input-element">
+                                <span asp-validation-for="PhoneNumber"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-5">
+                        <div class="text-sm text-muted mb-3">کد ملی:</div>
+                        <div class="text-dark font-weight-bold">
+                            <div class="form-element-row mb-0">
+                                <input asp-for="NationalCode" class="input-element" placeholder="0000000000">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-5">
+                        <label class="container-checkbox">
+                            دریافت خبرنامه
+                            <input asp-for="ReceiveNews">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="col-lg-6 mb-5">
+                        <div class="text-sm text-muted mb-3">تصویر پروفایل کاربری:</div>
+                        <div class="text-dark font-weight-bold">
+                            <div class="custom-control custom-control-inline align-items-center">
+                                <img src="@Directories.GetUserImage(Model.UserAvatar)" class="m-2 img-thumbnail" style="max-width: 200px" alt="user profile"/>
+                                <input asp-for="AvatarFile" accept="image/*" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-12">
+                        <div class="form-element-row text-left">
+                            <button type="submit" class="btn-element btn-success-element">
+                                <i class="fad fa-user-edit"></i>
+                                ذخیره تغییرات
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+@section Script{
+    <partial name="_ValidationScriptsPartial"/>
+}

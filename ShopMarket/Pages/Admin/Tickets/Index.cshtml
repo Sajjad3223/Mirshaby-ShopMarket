@@ -1,0 +1,49 @@
+﻿@page
+@using ShopMarket.Core.Utilities.Convertors
+@model ShopMarket.Pages.Admin.Tickets.IndexModel
+@{
+    ViewData["Title"] = "تیکت ها";
+    ViewData["page"] = "tickets";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" href="/admin-panel/css/pages/email.css">
+}
+
+<section>
+    <div class="card p-3">
+        <div class="email-user-list list-group ps ps--active-y">
+            <ul class="users-list-wrapper media-list">
+                @foreach (var ticket in Model.Tickets)
+                {
+                    <a asp-page="Ticket" asp-route-id="@ticket.TicketId" class="btn btn-block m-3 @(!ticket.IsSeen? "btn-outline-primary" : "btn-outline-dark") ">
+                    <li class=" row ">
+                        <div class="col-8" style="text-align: right">
+                            موضوع:
+                            <span class="text-right">@ticket.Title</span>
+                        </div>
+                        <div class="col-3">
+                            تاریخ ثبت: 
+                            <span class="text-right">@ticket.CreationDate.ToShamsi()</span>
+                        </div>
+                        <div class="col-12 my-3" style="text-align: right">
+                            متن تیکت: 
+                            <p>
+                                @if (ticket.Text.Length > 100)
+                                {
+                                    @ticket.Text.Substring(0, 100)
+                                }
+                                else
+                                {
+                                    @ticket.Text
+                                }
+                            </p>
+                        </div>
+                    </li>
+                    </a>
+                }
+            </ul>
+        </div>
+    </div>
+</section>

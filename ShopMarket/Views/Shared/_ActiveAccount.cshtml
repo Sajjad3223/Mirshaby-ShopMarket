@@ -1,0 +1,12 @@
+﻿@using ShopMarket.Core.Utilities
+@model ShopMarket.Core.ViewModels.UserViewModels.UserViewModel
+
+<div style="padding: 20px">
+    <h1> @Model.FullName عزیز !!!</h1>
+    
+    <p>
+        برای استفاده از تمامی امکاناات سایت لطفا با کلیک روی لینک زیر حساب خود را فعال کنید:
+    </p>
+    <a href="@($"{Directories.DOMAIN}userpanel/verify-account/{Model.ActiveCode}")"> فعال سازی حساب کاربری</a>
+
+</div>

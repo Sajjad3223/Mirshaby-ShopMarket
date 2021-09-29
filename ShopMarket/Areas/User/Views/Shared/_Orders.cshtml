@@ -1,0 +1,59 @@
+﻿@using ShopMarket.Core.Utilities
+@using ShopMarket.Core.Utilities.Convertors
+@using ShopMarket.Domain.ShopEntities.OrderEntities
+@model IEnumerable<ShopMarket.Core.ViewModels.ShopViewModels.OrderViewModels.OrderViewModel>
+@{
+    int counter = 1;
+}
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>شماره سفارش</th>
+                <th>تاریخ ثبت سفارش</th>
+                <th>مبلغ قابل پرداخت</th>
+                <th>مبلغ کل</th>
+                <th>عملیات پرداخت</th>
+                <th>عملیات پرداخت</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@counter</td>
+                    <td class="order-code">@order.OrderId</td>
+                    <td>@order.CreationDate.ToShamsi()</td>
+                    <td>@((order.FinalPrice - order.Discount.Value).ToString("N0")) تومان</td>
+                    <td>@(order.FinalPrice.ToString("N0")) تومان</td>
+                    <td>
+                        @switch (order.OrderStatus)
+                        {
+                            case EOrderStatus.NotPaid:
+                                <text>در انتظار پرداخت</text>
+                                break;
+                            case EOrderStatus.Paid:
+                                <text>پرداخت شده</text>
+                                break;
+                            case EOrderStatus.IsSending:
+                                <text>در حال ارسال</text>
+                                break;
+                            case EOrderStatus.Delivered:
+                                <text>تحویل داده شده</text>
+                                break;
+                        }
+                    </td>
+                    <td class="order-detail-link">
+                        <a asp-area="User" asp-controller="Home" asp-action="OrderDetails" asp-route-orderId="@order.OrderId">
+                            <i class="far fa-chevron-left"></i>
+                        </a>
+                    </td>
+                </tr>
+
+                counter++;
+            }
+        </tbody>
+    </table>
+</div>

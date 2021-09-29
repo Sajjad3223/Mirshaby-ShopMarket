@@ -1,0 +1,25 @@
+﻿@page "{userId}"
+@model ShopMarket.Pages.Admin.Users.RolesModel
+@{
+    ViewData["Title"] = "ویرایش کاربر";
+    ViewData["page"] = "users";
+    ViewData["sub-page"] = "activeUsers";
+}
+
+<section class="section">
+    <div class="card">
+        <form class="form" method="post">
+            <ul>
+                @foreach (var role in Model.Roles)
+                {
+                    <li>
+                        <input class="checkbox" type="checkbox" name="roles" value="@role.RoleId"
+                               @(Model.UserRoles.ToList().Select(r=>r.RoleId).Contains(role.RoleId) ? "checked" : null)/>
+                        @role.RoleTitle
+                    </li>
+                }
+            </ul>
+            <button class="btn btn-dark">ثبت نقش ها</button>
+        </form>
+    </div>
+</section>

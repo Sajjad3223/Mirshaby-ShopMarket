@@ -1,0 +1,64 @@
+﻿@page
+@using ShopMarket.Core.Utilities.Convertors
+@model ShopMarket.Pages.Admin.Users.IndexModel
+@{
+    ViewData["Title"] = "مدیریت کاربران";
+    ViewData["page"] = "users";
+    ViewData["sub-page"] = "deletedUsers";
+}
+
+
+<section class="section">
+    <div class="card">
+        <div class="card-header">
+            لیست کاربران سایت
+        </div>
+        <a asp-page="Create" class="btn btn-primary m-3">افزودن کاربر جدید</a>
+        <div class="card-body">
+            <table class="table table-striped" id="usersTable">
+                <thead>
+                <tr>
+                    <th>نام و نام خانوادگی</th>
+                    <th>ایمیل</th>
+                    <th>شماره همراه</th>
+                    <th>حساب فعال؟</th>
+                    <th>تاریخ ثبت نام</th>
+                    <th>عملیات</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var user in Model.UserDto.Users)
+                {
+                    <tr>
+                        <td>@user.FullName</td>
+                        <td>@user.Email</td>
+                        <td>@user.PhoneNumber</td>
+                        <td>
+                            <span class="badge @(user.IsEmailVerified ? "bg-success" : "bg-danger")">@(user.IsEmailVerified ? "فعال" : "غیرفعال")</span>
+                        </td>
+                        <td>@user.CreationDate.ToShamsi()</td>
+                        <td>
+                            <a asp-page="Edit" asp-route-userId="@user.Id" class="btn btn-sm btn-outline-warning">ویرایش</a>
+                            <a asp-page="Roles" asp-route-userId="@user.Id" class="btn btn-sm btn-outline-dark">نقش ها</a>
+                            <a asp-page="Delete" asp-route-userId="@user.Id" class="btn btn-sm btn-outline-danger">حذف</a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+
+@section Scripts
+{
+    <script src="/admin-panel/vendors/simple-datatables/simple-datatables.js"></script>
+    
+    <script>
+
+        // Simple Datatable
+        let table1 = document.querySelector('#usersTable');
+        let dataTable = new simpleDatatables.DataTable(table1);
+    </script>
+}

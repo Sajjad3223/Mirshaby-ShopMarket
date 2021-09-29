@@ -1,0 +1,25 @@
+﻿@using ShopMarket.Core.ViewModels.ShopViewModels.ProductViewModels
+@model IEnumerable<ShopMarket.Core.ViewModels.ShopViewModels.ProductViewModels.ProductViewModel>
+
+
+<section class="product-carousel in-box">
+    <div class="section-title">
+        <i class="fad fa-pen-nib"></i>
+        <a href="/home/search?categoryId=@((ViewBag.Category as ShopCategoryViewModel).CategoryId)">
+            @((ViewBag.Category as ShopCategoryViewModel).Title)
+        </a>
+    </div>
+    <div class="swiper-container slider-lg">
+        <div class="swiper-wrapper">
+            @foreach (var product in Model)
+            {
+                <div class="swiper-slide">
+                    <partial name="_ProductCard" model="product"/>
+                </div>
+            }
+        </div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>

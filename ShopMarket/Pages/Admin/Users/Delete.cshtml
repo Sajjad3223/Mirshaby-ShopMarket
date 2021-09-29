@@ -1,0 +1,19 @@
+﻿@page "{userId}"
+@model ShopMarket.Pages.Admin.Users.DeleteModel
+@{
+    ViewData["Title"] = "ویرایش کاربر";
+    ViewData["page"] = "users";
+    ViewData["sub-page"] = "activeUsers";
+}
+
+
+<section class="section">
+    <div class="card">
+        <form method="post">
+            <input type="hidden" asp-for="UserViewModel.UserId"/>
+            <h1>آیا از حذف کاربر "@Model.UserViewModel.FullName" مطمئن هستید؟</h1>
+            <button class="btn btn-danger" type="submit">غیر فعال سازی حساب کاربر</button>
+            <a href="/admin/users" class="btn btn-link">رفتن به صفحه اصلی</a>
+        </form>
+    </div>
+</section>
