@@ -1,0 +1,12 @@
+D:\C#Projects\ShopMarket\ShopMarket.Domain\bin\Debug\net5.0\ShopMarket.Domain.deps.json
+D:\C#Projects\ShopMarket\ShopMarket.Domain\bin\Debug\net5.0\ShopMarket.Domain.dll
+D:\C#Projects\ShopMarket\ShopMarket.Domain\bin\Debug\net5.0\ref\ShopMarket.Domain.dll
+D:\C#Projects\ShopMarket\ShopMarket.Domain\bin\Debug\net5.0\ShopMarket.Domain.pdb
+D:\C#Projects\ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ShopMarket.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\C#Projects\ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ShopMarket.Domain.AssemblyInfoInputs.cache
+D:\C#Projects\ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ShopMarket.Domain.AssemblyInfo.cs
+D:\C#Projects\ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ShopMarket.Domain.csproj.CoreCompileInputs.cache
+D:\C#Projects\ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ShopMarket.Domain.dll
+D:\C#Projects\ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ref\ShopMarket.Domain.dll
+D:\C#Projects\ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ShopMarket.Domain.pdb
+D:\C#Projects\ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ShopMarket.Domain.csproj.AssemblyReference.cache

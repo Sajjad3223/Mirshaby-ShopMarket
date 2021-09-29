@@ -1,0 +1,17 @@
+D:\C#Projects\ShopMarket\ShopMarket.Core\bin\Debug\net5.0\ShopMarket.Core.deps.json
+D:\C#Projects\ShopMarket\ShopMarket.Core\bin\Debug\net5.0\ShopMarket.Core.dll
+D:\C#Projects\ShopMarket\ShopMarket.Core\bin\Debug\net5.0\ref\ShopMarket.Core.dll
+D:\C#Projects\ShopMarket\ShopMarket.Core\bin\Debug\net5.0\ShopMarket.Core.pdb
+D:\C#Projects\ShopMarket\ShopMarket.Core\bin\Debug\net5.0\ShopMarket.Domain.dll
+D:\C#Projects\ShopMarket\ShopMarket.Core\bin\Debug\net5.0\ShopMarket.Infra.Data.dll
+D:\C#Projects\ShopMarket\ShopMarket.Core\bin\Debug\net5.0\ShopMarket.Domain.pdb
+D:\C#Projects\ShopMarket\ShopMarket.Core\bin\Debug\net5.0\ShopMarket.Infra.Data.pdb
+D:\C#Projects\ShopMarket\ShopMarket.Core\obj\Debug\net5.0\ShopMarket.Core.csproj.AssemblyReference.cache
+D:\C#Projects\ShopMarket\ShopMarket.Core\obj\Debug\net5.0\ShopMarket.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\C#Projects\ShopMarket\ShopMarket.Core\obj\Debug\net5.0\ShopMarket.Core.AssemblyInfoInputs.cache
+D:\C#Projects\ShopMarket\ShopMarket.Core\obj\Debug\net5.0\ShopMarket.Core.AssemblyInfo.cs
+D:\C#Projects\ShopMarket\ShopMarket.Core\obj\Debug\net5.0\ShopMarket.Core.csproj.CoreCompileInputs.cache
+D:\C#Projects\ShopMarket\ShopMarket.Core\obj\Debug\net5.0\ShopMarket.Core.csproj.CopyComplete
+D:\C#Projects\ShopMarket\ShopMarket.Core\obj\Debug\net5.0\ShopMarket.Core.dll
+D:\C#Projects\ShopMarket\ShopMarket.Core\obj\Debug\net5.0\ref\ShopMarket.Core.dll
+D:\C#Projects\ShopMarket\ShopMarket.Core\obj\Debug\net5.0\ShopMarket.Core.pdb
