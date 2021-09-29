@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ElBFfPNwx2BZ253fBwMGtu4Arl2LqvkjA5R360xRSkwM2klwC2MJY7kCypwvqgEwnA240Mon2/zP9WFcJnA+sw==",
+  "dgSpecHash": "e/TDlTCXB04YqEszE1eiTSYlfajZZQGE4E60ezBqHO3M52QAwjUs60i8eR+unHN8W/FfoCPHCBPvz0R2InAXNQ==",
   "success": true,
-  "projectFilePath": "D:\\C#Projects\\ShopMarket\\ShopMarket\\ShopMarket.csproj",
+  "projectFilePath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket\\ShopMarket.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\msajj\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\msajj\\.nuget\\packages\\libuv\\1.9.1\\libuv.1.9.1.nupkg.sha512",

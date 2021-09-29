@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cwrgBC2PBOaWo+p2u4RjxHd/KRJaBFQx4jE8hI873hiCrS9IB6mu8Nni5TOOqV3hP1vWpOwyu+Eoa7b4PWb57Q==",
+  "dgSpecHash": "B0FksWp/jyomueHcpZtC1rSVgw/DHZ7eu0ozXja/shYKYAkNS8rDdsiajVjvkOtkdozVMmgyZxpoNc+rHePuBQ==",
   "success": true,
-  "projectFilePath": "D:\\C#Projects\\ShopMarket\\ShopMarket.Core\\ShopMarket.Core.csproj",
+  "projectFilePath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Core\\ShopMarket.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\msajj\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Users\\msajj\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

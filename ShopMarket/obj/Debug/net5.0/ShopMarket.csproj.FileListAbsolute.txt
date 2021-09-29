@@ -569,3 +569,15 @@ D:\C#Projects\ShopMarket\ShopMarket\obj\Debug\net5.0\Razor\Views\Shared\Componen
 D:\C#Projects\ShopMarket\ShopMarket\obj\Debug\net5.0\Razor\Views\Home\ContactUs.cshtml.g.cs
 D:\C#Projects\ShopMarket\ShopMarket\obj\Debug\net5.0\Razor\Pages\Admin\Tickets\Index.cshtml.g.cs
 D:\C#Projects\ShopMarket\ShopMarket\obj\Debug\net5.0\Razor\Pages\Admin\Tickets\Ticket.cshtml.g.cs
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket\obj\Debug\net5.0\ShopMarket.csproj.AssemblyReference.cache
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket\obj\Debug\net5.0\ShopMarket.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket\obj\Debug\net5.0\ShopMarket.AssemblyInfoInputs.cache
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket\obj\Debug\net5.0\ShopMarket.AssemblyInfo.cs
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket\obj\Debug\net5.0\ShopMarket.csproj.CoreCompileInputs.cache
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket\obj\Debug\net5.0\ShopMarket.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket\obj\Debug\net5.0\ShopMarket.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket\obj\Debug\net5.0\ShopMarket.RazorAssemblyInfo.cache
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket\obj\Debug\net5.0\ShopMarket.RazorAssemblyInfo.cs
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket\obj\Debug\net5.0\ShopMarket.dll
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket\obj\Debug\net5.0\ref\ShopMarket.dll
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket\obj\Debug\net5.0\ShopMarket.pdb

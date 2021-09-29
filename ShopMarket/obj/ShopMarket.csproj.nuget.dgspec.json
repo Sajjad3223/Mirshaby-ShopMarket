@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\C#Projects\\ShopMarket\\ShopMarket\\ShopMarket.csproj": {}
+    "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket\\ShopMarket.csproj": {}
   },
   "projects": {
-    "D:\\C#Projects\\ShopMarket\\ShopMarket.Core\\ShopMarket.Core.csproj": {
+    "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Core\\ShopMarket.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C#Projects\\ShopMarket\\ShopMarket.Core\\ShopMarket.Core.csproj",
+        "projectUniqueName": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Core\\ShopMarket.Core.csproj",
         "projectName": "ShopMarket.Core",
-        "projectPath": "D:\\C#Projects\\ShopMarket\\ShopMarket.Core\\ShopMarket.Core.csproj",
+        "projectPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Core\\ShopMarket.Core.csproj",
         "packagesPath": "C:\\Users\\msajj\\.nuget\\packages\\",
-        "outputPath": "D:\\C#Projects\\ShopMarket\\ShopMarket.Core\\obj\\",
+        "outputPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
@@ -33,11 +33,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\C#Projects\\ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj": {
-                "projectPath": "D:\\C#Projects\\ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj"
+              "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj": {
+                "projectPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj"
               },
-              "D:\\C#Projects\\ShopMarket\\ShopMarket.Infra.Data\\ShopMarket.Infra.Data.csproj": {
-                "projectPath": "D:\\C#Projects\\ShopMarket\\ShopMarket.Infra.Data\\ShopMarket.Infra.Data.csproj"
+              "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Infra.Data\\ShopMarket.Infra.Data.csproj": {
+                "projectPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Infra.Data\\ShopMarket.Infra.Data.csproj"
               }
             }
           }
@@ -80,14 +80,14 @@
         }
       }
     },
-    "D:\\C#Projects\\ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj": {
+    "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C#Projects\\ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj",
         "projectName": "ShopMarket.Domain",
-        "projectPath": "D:\\C#Projects\\ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj",
+        "projectPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj",
         "packagesPath": "C:\\Users\\msajj\\.nuget\\packages\\",
-        "outputPath": "D:\\C#Projects\\ShopMarket\\ShopMarket.Domain\\obj\\",
+        "outputPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
@@ -139,14 +139,14 @@
         }
       }
     },
-    "D:\\C#Projects\\ShopMarket\\ShopMarket.Infra.Data\\ShopMarket.Infra.Data.csproj": {
+    "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Infra.Data\\ShopMarket.Infra.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C#Projects\\ShopMarket\\ShopMarket.Infra.Data\\ShopMarket.Infra.Data.csproj",
+        "projectUniqueName": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Infra.Data\\ShopMarket.Infra.Data.csproj",
         "projectName": "ShopMarket.Infra.Data",
-        "projectPath": "D:\\C#Projects\\ShopMarket\\ShopMarket.Infra.Data\\ShopMarket.Infra.Data.csproj",
+        "projectPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Infra.Data\\ShopMarket.Infra.Data.csproj",
         "packagesPath": "C:\\Users\\msajj\\.nuget\\packages\\",
-        "outputPath": "D:\\C#Projects\\ShopMarket\\ShopMarket.Infra.Data\\obj\\",
+        "outputPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Infra.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
@@ -168,8 +168,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\C#Projects\\ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj": {
-                "projectPath": "D:\\C#Projects\\ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj"
+              "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj": {
+                "projectPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj"
               }
             }
           }
@@ -224,14 +224,14 @@
         }
       }
     },
-    "D:\\C#Projects\\ShopMarket\\ShopMarket.Infra.IOC\\ShopMarket.Infra.IOC.csproj": {
+    "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Infra.IOC\\ShopMarket.Infra.IOC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C#Projects\\ShopMarket\\ShopMarket.Infra.IOC\\ShopMarket.Infra.IOC.csproj",
+        "projectUniqueName": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Infra.IOC\\ShopMarket.Infra.IOC.csproj",
         "projectName": "ShopMarket.Infra.IOC",
-        "projectPath": "D:\\C#Projects\\ShopMarket\\ShopMarket.Infra.IOC\\ShopMarket.Infra.IOC.csproj",
+        "projectPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Infra.IOC\\ShopMarket.Infra.IOC.csproj",
         "packagesPath": "C:\\Users\\msajj\\.nuget\\packages\\",
-        "outputPath": "D:\\C#Projects\\ShopMarket\\ShopMarket.Infra.IOC\\obj\\",
+        "outputPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Infra.IOC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
@@ -253,14 +253,14 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\C#Projects\\ShopMarket\\ShopMarket.Core\\ShopMarket.Core.csproj": {
-                "projectPath": "D:\\C#Projects\\ShopMarket\\ShopMarket.Core\\ShopMarket.Core.csproj"
+              "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Core\\ShopMarket.Core.csproj": {
+                "projectPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Core\\ShopMarket.Core.csproj"
               },
-              "D:\\C#Projects\\ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj": {
-                "projectPath": "D:\\C#Projects\\ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj"
+              "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj": {
+                "projectPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj"
               },
-              "D:\\C#Projects\\ShopMarket\\ShopMarket.Infra.Data\\ShopMarket.Infra.Data.csproj": {
-                "projectPath": "D:\\C#Projects\\ShopMarket\\ShopMarket.Infra.Data\\ShopMarket.Infra.Data.csproj"
+              "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Infra.Data\\ShopMarket.Infra.Data.csproj": {
+                "projectPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Infra.Data\\ShopMarket.Infra.Data.csproj"
               }
             }
           }
@@ -299,14 +299,14 @@
         }
       }
     },
-    "D:\\C#Projects\\ShopMarket\\ShopMarket\\ShopMarket.csproj": {
+    "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket\\ShopMarket.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C#Projects\\ShopMarket\\ShopMarket\\ShopMarket.csproj",
+        "projectUniqueName": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket\\ShopMarket.csproj",
         "projectName": "ShopMarket",
-        "projectPath": "D:\\C#Projects\\ShopMarket\\ShopMarket\\ShopMarket.csproj",
+        "projectPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket\\ShopMarket.csproj",
         "packagesPath": "C:\\Users\\msajj\\.nuget\\packages\\",
-        "outputPath": "D:\\C#Projects\\ShopMarket\\ShopMarket\\obj\\",
+        "outputPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
@@ -328,17 +328,17 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\C#Projects\\ShopMarket\\ShopMarket.Core\\ShopMarket.Core.csproj": {
-                "projectPath": "D:\\C#Projects\\ShopMarket\\ShopMarket.Core\\ShopMarket.Core.csproj"
+              "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Core\\ShopMarket.Core.csproj": {
+                "projectPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Core\\ShopMarket.Core.csproj"
               },
-              "D:\\C#Projects\\ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj": {
-                "projectPath": "D:\\C#Projects\\ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj"
+              "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj": {
+                "projectPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Domain\\ShopMarket.Domain.csproj"
               },
-              "D:\\C#Projects\\ShopMarket\\ShopMarket.Infra.Data\\ShopMarket.Infra.Data.csproj": {
-                "projectPath": "D:\\C#Projects\\ShopMarket\\ShopMarket.Infra.Data\\ShopMarket.Infra.Data.csproj"
+              "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Infra.Data\\ShopMarket.Infra.Data.csproj": {
+                "projectPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Infra.Data\\ShopMarket.Infra.Data.csproj"
               },
-              "D:\\C#Projects\\ShopMarket\\ShopMarket.Infra.IOC\\ShopMarket.Infra.IOC.csproj": {
-                "projectPath": "D:\\C#Projects\\ShopMarket\\ShopMarket.Infra.IOC\\ShopMarket.Infra.IOC.csproj"
+              "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Infra.IOC\\ShopMarket.Infra.IOC.csproj": {
+                "projectPath": "C:\\Users\\msajj\\OneDrive\\Desktop\\Mirshaby-ShopMarket\\Mirshaby-ShopMarket\\ShopMarket.Infra.IOC\\ShopMarket.Infra.IOC.csproj"
               }
             }
           }

@@ -10,3 +10,15 @@ D:\C#Projects\ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ShopMarket.Domain.dl
 D:\C#Projects\ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ref\ShopMarket.Domain.dll
 D:\C#Projects\ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ShopMarket.Domain.pdb
 D:\C#Projects\ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ShopMarket.Domain.csproj.AssemblyReference.cache
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket.Domain\bin\Debug\net5.0\ShopMarket.Domain.deps.json
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket.Domain\bin\Debug\net5.0\ShopMarket.Domain.dll
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket.Domain\bin\Debug\net5.0\ref\ShopMarket.Domain.dll
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket.Domain\bin\Debug\net5.0\ShopMarket.Domain.pdb
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ShopMarket.Domain.csproj.AssemblyReference.cache
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ShopMarket.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ShopMarket.Domain.AssemblyInfoInputs.cache
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ShopMarket.Domain.AssemblyInfo.cs
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ShopMarket.Domain.csproj.CoreCompileInputs.cache
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ShopMarket.Domain.dll
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ref\ShopMarket.Domain.dll
+C:\Users\msajj\OneDrive\Desktop\Mirshaby-ShopMarket\Mirshaby-ShopMarket\ShopMarket.Domain\obj\Debug\net5.0\ShopMarket.Domain.pdb
