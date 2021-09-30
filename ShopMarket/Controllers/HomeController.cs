@@ -25,10 +25,16 @@ namespace ShopMarket.Controllers
 {
     public class HomeController : Controller
     {
+        #region Services
+
         private readonly IProductService _productService;
         private readonly IProductImageService _imageService;
         private readonly IShopCategoryService _shopCategoryService;
         private readonly ITicketService _ticketService;
+
+        #endregion
+
+        #region Inject Services
 
         public HomeController(IProductService productService, IShopCategoryService shopCategoryService, IProductImageService imageService, ITicketService ticketService)
         {
@@ -37,6 +43,8 @@ namespace ShopMarket.Controllers
             _imageService = imageService;
             _ticketService = ticketService;
         }
+
+        #endregion
 
         public IActionResult Index()
         {
@@ -83,6 +91,8 @@ namespace ShopMarket.Controllers
 
             #endregion
 
+            #region Get Products by category Id and filter
+
             if (categoryId != null)
             {
                 var category = await _shopCategoryService.GetCategory(categoryId.Value);
@@ -111,10 +121,19 @@ namespace ShopMarket.Controllers
                 if (category.ParentId != null)
                     ViewBag.ParentCategory = await _shopCategoryService.GetCategory(category.ParentId.Value);
             }
+
+            #endregion
+
+            #region Get All Products by filter
+
             else
             {
                 productDto = _productService.GetAll(filter);
             }
+
+            #endregion
+
+            #region If Any Product Exists Attach Main Images
 
             if (productDto.Products.Any())
             {
@@ -130,7 +149,10 @@ namespace ShopMarket.Controllers
                 productDto.Products = products;
             }
 
+            #endregion
+
             ViewData["Categories"] = new SelectList(_shopCategoryService.GetAll(), "CategoryId", "Title");
+            
             return View(productDto);
         }
 
@@ -160,6 +182,9 @@ namespace ShopMarket.Controllers
             return View("Search", productDto);
         }
 
+        #region Contact Us
+
+
         public IActionResult ContactUs()
         {
             return View();
@@ -176,6 +201,9 @@ namespace ShopMarket.Controllers
             ViewBag.Result = "Success";
             return View();
         }
+
+
+        #endregion
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

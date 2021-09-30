@@ -21,7 +21,7 @@ namespace ShopMarket.Areas.User.Controllers
         private readonly IUserService _userService;
         private readonly IViewRenderService _renderService;
         private readonly IEmailSender _emailSender;
-
+        // Inject Services
         public AccountController(IUserService userService, IViewRenderService renderService, IEmailSender emailSender)
         {
             _userService = userService;
@@ -136,6 +136,8 @@ namespace ShopMarket.Areas.User.Controllers
                         return View(loginViewModel);
                     }
 
+                    #region Sign In User
+
                     Claim[] claims = new Claim[]
                     {
                         new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
@@ -149,7 +151,9 @@ namespace ShopMarket.Areas.User.Controllers
                         IsPersistent = loginViewModel.RememberMe
                     };
                     await HttpContext.SignInAsync(principal, properties);
-                    
+
+                    #endregion
+
                     return Redirect(ReturnUrl);
                 }
                 else

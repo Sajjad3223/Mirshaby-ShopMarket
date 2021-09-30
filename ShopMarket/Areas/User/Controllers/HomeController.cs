@@ -23,6 +23,8 @@ namespace ShopMarket.Areas.User.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        #region Services Decleration
+
         private readonly IUserService _userService;
         private readonly IOrderService _orderService;
         private readonly ILikedProductService _likedService;
@@ -33,6 +35,8 @@ namespace ShopMarket.Areas.User.Controllers
         private readonly IViewRenderService _renderService;
         private readonly IEmailSender _emailSender;
 
+        #endregion
+        //Inject Services
         public HomeController(IUserService userService, IOrderService orderService, ILikedProductService likedService, IRecentVisitService recentService, IProductCommentService commentService, IUserAddressService addressService, IProductImageService imageService, IViewRenderService renderService, IEmailSender emailSender)
         {
             _userService = userService;
@@ -53,6 +57,8 @@ namespace ShopMarket.Areas.User.Controllers
 
             var userOrders = _orderService.GetUserOrders(userId).Take(7);
 
+            #region Fill user Liked products Panel
+
             var userLikes = _likedService.GetUserLikedProducts(userId).Take(3);
 
             if (userLikes.Any())
@@ -62,6 +68,8 @@ namespace ShopMarket.Areas.User.Controllers
                     like.MainImageName = (await _imageService.GetMainImage(like.ProductId)).ImageName;
                 }
             }
+
+            #endregion
 
             UserPanelViewModel userPanel = new UserPanelViewModel()
             {
@@ -81,6 +89,8 @@ namespace ShopMarket.Areas.User.Controllers
 
             UserOrdersViewModel orders = new UserOrdersViewModel();
 
+            #region Fill User Orders by Status
+
             if (userOrders.Any())
             {
                 orders.NotPaidOrders = userOrders.Where(o => o.OrderStatus == EOrderStatus.NotPaid);
@@ -89,13 +99,16 @@ namespace ShopMarket.Areas.User.Controllers
                 orders.DeliveredOrders = userOrders.Where(o => o.OrderStatus == EOrderStatus.Delivered);
             }
 
+            #endregion
+
+            #region If Doesn't exist any order we new them not to give null error
+
             if (!orders.NotPaidOrders.Any()) orders.NotPaidOrders = new List<OrderViewModel>();
             if (!orders.PaidOrders.Any()) orders.PaidOrders = new List<OrderViewModel>();
             if (!orders.IsSendingOrders.Any()) orders.IsSendingOrders = new List<OrderViewModel>();
             if (!orders.DeliveredOrders.Any()) orders.DeliveredOrders = new List<OrderViewModel>();
 
-
-            ViewData["selected"] = "orders";
+            #endregion
 
             return View(orders);
         }
@@ -130,7 +143,6 @@ namespace ShopMarket.Areas.User.Controllers
                     like.MainImageName = (await _imageService.GetMainImage(like.ProductId)).ImageName;
                 }
             }
-            ViewData["selected"] = "likes";
 
             return View(userLikes);
         }
@@ -141,9 +153,7 @@ namespace ShopMarket.Areas.User.Controllers
             int userId = User.GetUserId();
 
             var userComments = _commentService.GetProductCommentsByUser(userId);
-
-            ViewData["selected"] = "comments";
-
+            
             return View(userComments);
         }
 
@@ -154,8 +164,6 @@ namespace ShopMarket.Areas.User.Controllers
         {
             int userId = User.GetUserId();
             
-            ViewData["selected"] = "addresses";
-
             return View(userId);
         }
 
@@ -256,8 +264,7 @@ namespace ShopMarket.Areas.User.Controllers
                     visit.MainImageName = (await _imageService.GetMainImage(visit.ProductId)).ImageName;
                 }
             }
-            ViewData["selected"] = "recents";
-
+            
             return View(recentVisits);
         }
 
@@ -272,9 +279,7 @@ namespace ShopMarket.Areas.User.Controllers
             var body = _renderService.RenderToStringAsync("_ActiveAccount", user);
 
             _emailSender.Send(user.Email, "فعال سازی حساب کاربری", body);
-
-            ViewData["selected"] = "verifyemail";
-
+            
             return null;
         }
 
@@ -314,14 +319,15 @@ namespace ShopMarket.Areas.User.Controllers
 
         #endregion
 
+        #region Edit User Profile
+
+
         [Route("/userpanel/edit")]
         public async Task<IActionResult> EditProfile()
         {
             int userId = User.GetUserId();
 
             var user = await _userService.GetUser(userId);
-
-            ViewData["selected"] = "edit";
 
             return View(user);
         }
@@ -346,6 +352,8 @@ namespace ShopMarket.Areas.User.Controllers
             return RedirectToAction("Index");
         }
 
-        
+
+        #endregion
+
     }
 }
