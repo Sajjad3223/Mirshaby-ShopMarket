@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -17,6 +15,8 @@ namespace ShopMarket.Controllers
     [Authorize]
     public class OrderController : Controller
     {
+        #region Sevices
+
         private readonly IOrderService _orderService;
         private readonly IOrderItemService _orderItemService;
         private readonly IDiscountCodeService _discountCode;
@@ -24,7 +24,10 @@ namespace ShopMarket.Controllers
         private readonly IUserAddressService _addressService;
         private readonly IOrderHandler _orderHandler;
 
+        #endregion
 
+        #region Inject Sevices
+        
         public OrderController(IOrderService orderService, IDiscountCodeService discountCode, IUserService userService, IUserAddressService addressService, IOrderHandler orderHandler, IOrderItemService orderItemService)
         {
             _orderService = orderService;
@@ -34,6 +37,11 @@ namespace ShopMarket.Controllers
             _orderHandler = orderHandler;
             _orderItemService = orderItemService;
         }
+
+        #endregion
+
+        #region Cart Controllers
+
 
         public async Task<IActionResult> ShowOrder()
         {
@@ -84,12 +92,36 @@ namespace ShopMarket.Controllers
                 }
             }
 
-            return ViewComponent("OrderPrices",new
+            return ViewComponent("OrderPrices", new
             {
                 OrderId = orderId
             });
         }
 
+
+        #endregion
+
+        async Task<OrderViewModel> UpdateOrder(int orderId)
+        {
+            var order = await _orderService.GetOrder(orderId);
+            var orderItems = _orderItemService.GetItemsOfOrder(order.OrderId);
+
+            order.TotalPrice = orderItems.Sum(i => i.Product.Price * i.Count);
+            int discountPrice = 0;
+            orderItems.Where(i => i.Product.Discount.HasValue).ToList().ForEach(i =>
+            {
+                discountPrice += (int)(((i.Product.Price * i.Product.Discount) / 100) * i.Count);
+            });
+
+            var sumPrice = order.TotalPrice - discountPrice;
+
+            order.FinalPrice = PriceCalculator.CalculateDiscountPrice(sumPrice, order.Discount);
+            _orderService.UpdateOrder(order);
+            return order;
+        }
+
+        #region Payment Handler
+        
         public async Task<IActionResult> SubmitAndPay(int orderId)
         {
             await UpdateOrder(orderId);
@@ -111,26 +143,7 @@ namespace ShopMarket.Controllers
                 return Redirect("https://sandbox.zarinpal.com/pg/StartPay/" + response.Result.Authority);
             }
             else
-                return RedirectToAction("PaymentFailed",order);
-        }
-
-        async Task<OrderViewModel> UpdateOrder(int orderId)
-        {
-            var order = await _orderService.GetOrder(orderId);
-            var orderItems = _orderItemService.GetItemsOfOrder(order.OrderId);
-
-            order.TotalPrice = orderItems.Sum(i => i.Product.Price * i.Count);
-            int discountPrice = 0;
-            orderItems.Where(i => i.Product.Discount.HasValue).ToList().ForEach(i =>
-            {
-                discountPrice += (int)(((i.Product.Price * i.Product.Discount) / 100) * i.Count);
-            });
-
-            var sumPrice = order.TotalPrice - discountPrice;
-
-            order.FinalPrice = PriceCalculator.CalculateDiscountPrice(sumPrice, order.Discount);
-            _orderService.UpdateOrder(order);
-            return order;
+                return RedirectToAction("PaymentFailed", order);
         }
 
         public async Task<IActionResult> OrderPayment(int id)
@@ -147,18 +160,21 @@ namespace ShopMarket.Controllers
                 if (response.Result.Status == 100)
                 {
                     await _orderHandler.FinalizeOrder(order.OrderId, response.Result.RefId);
-                    
+
                     ViewBag.RefId = response.Result.RefId;
                     return View(order);
                 }
             }
 
-            return RedirectToAction("PaymentFailed",order);
+            return RedirectToAction("PaymentFailed", order);
         }
 
         public IActionResult PaymentFailed(OrderViewModel order)
         {
             return View(order);
         }
+        
+        #endregion
+
     }
 }

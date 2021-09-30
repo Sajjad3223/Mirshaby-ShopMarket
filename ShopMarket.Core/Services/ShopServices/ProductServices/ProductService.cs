@@ -29,7 +29,9 @@ namespace ShopMarket.Core.Services.ShopServices.ProductServices
             var products = _productRepository.GetAll();
 
             int pageCount = 1;
-            
+
+            #region Filter Products by given filter
+
             if(!string.IsNullOrWhiteSpace(filter.Search))
                 products = products.Where(p => p.Title.Contains(filter.Search) ||
                                                p.Tags.Contains(filter.Search) ||
@@ -73,6 +75,8 @@ namespace ShopMarket.Core.Services.ShopServices.ProductServices
                     _ => products.OrderByDescending(p => p.Visit)
                 };
             }
+
+            #endregion
 
             int skip = (filter.PageId - 1) * filter.Take;
 

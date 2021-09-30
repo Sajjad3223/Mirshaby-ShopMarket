@@ -28,109 +28,109 @@ namespace ShopMarket.Infra.IOC
         {
             #region Services
 
-            #region ShopServices
+                #region ShopServices
 
-            services.AddScoped<IStoreService, StoreService>();
-            services.AddScoped<IShopCategoryService, ShopCategoryService>();
-            services.AddScoped<IDiscountCodeService, DiscountCodeService>();
+                    services.AddScoped<IStoreService, StoreService>();
+                    services.AddScoped<IShopCategoryService, ShopCategoryService>();
+                    services.AddScoped<IDiscountCodeService, DiscountCodeService>();
 
-            services.AddScoped<ITicketService, TicketService>();
+                    services.AddScoped<ITicketService, TicketService>();
 
-            services.AddScoped<ISliderService, SliderService>();
-            services.AddScoped<IBannerService, BannerService>();
-            services.AddScoped<IMainPageDetailService, MainPageDetailService>();
+                    services.AddScoped<ISliderService, SliderService>();
+                    services.AddScoped<IBannerService, BannerService>();
+                    services.AddScoped<IMainPageDetailService, MainPageDetailService>();
 
-            #region OrderServices
+                    #region OrderServices
 
-            services.AddScoped<IOrderService, OrderService>();
-            services.AddScoped<IOrderItemService, OrderItemService>();
+                        services.AddScoped<IOrderService, OrderService>();
+                        services.AddScoped<IOrderItemService, OrderItemService>();
 
-            #endregion
+                    #endregion
 
-            #region ProductServices
+                    #region ProductServices
 
-            services.AddScoped<IProductService, ProductService>();
-            services.AddScoped<IProductImageService, ProductImageService>();
-            services.AddScoped<IProductCommentService, ProductCommentService>();
-            services.AddScoped<IProductDetailService, ProductDetailService>();
+                        services.AddScoped<IProductService, ProductService>();
+                        services.AddScoped<IProductImageService, ProductImageService>();
+                        services.AddScoped<IProductCommentService, ProductCommentService>();
+                        services.AddScoped<IProductDetailService, ProductDetailService>();
 
-            services.AddScoped<IAvailableProductColorService, AvailableProductColorService>();
-            services.AddScoped<IAvailableProductSizeService, AvailableProductSizeService>();
+                        services.AddScoped<IAvailableProductColorService, AvailableProductColorService>();
+                        services.AddScoped<IAvailableProductSizeService, AvailableProductSizeService>();
 
-            #endregion
+                    #endregion
 
-            #endregion
+                #endregion
 
-            #region UserServices
+                #region UserServices
 
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IUserRoleService, UserRoleService>();
-            services.AddScoped<IUserAddressService, UserAddressService>();
-            services.AddScoped<IRoleService, RoleService>();
-            services.AddScoped<IRolePermissionService, RolePermissionService>();
-            services.AddScoped<IPermissionService, PermissionService>();
-            services.AddScoped<IRecentVisitService, RecentVisitService>();
-            services.AddScoped<ILikedProductService, LikedProductService>();
-            services.AddScoped<IOrderHandler, OrderHandler>();
+                    services.AddScoped<IUserService, UserService>();
+                    services.AddScoped<IUserRoleService, UserRoleService>();
+                    services.AddScoped<IUserAddressService, UserAddressService>();
+                    services.AddScoped<IRoleService, RoleService>();
+                    services.AddScoped<IRolePermissionService, RolePermissionService>();
+                    services.AddScoped<IPermissionService, PermissionService>();
+                    services.AddScoped<IRecentVisitService, RecentVisitService>();
+                    services.AddScoped<ILikedProductService, LikedProductService>();
+                    services.AddScoped<IOrderHandler, OrderHandler>();
 
-            #endregion
+                #endregion
 
-            services.AddScoped<IFileManager, FileManager>();
+                services.AddScoped<IFileManager, FileManager>();
 
-            services.AddScoped<IEmailSender, GmailSender>();
+                services.AddScoped<IEmailSender, GmailSender>();
 
-            services.AddScoped<IViewRenderService, RenderViewToString>();
+                services.AddScoped<IViewRenderService, RenderViewToString>();
 
             #endregion
 
             #region Repositories
 
 
-            #region ShopRepositorys
+                #region ShopRepositorys
 
-            services.AddScoped<IStoreRepository, StoreRepository>();
-            services.AddScoped<IShopCategoryRepository, ShopCategoryRepository>();
-            services.AddScoped<IDiscountCodeRepository, DiscountCodeRepository>();
+                    services.AddScoped<IStoreRepository, StoreRepository>();
+                    services.AddScoped<IShopCategoryRepository, ShopCategoryRepository>();
+                    services.AddScoped<IDiscountCodeRepository, DiscountCodeRepository>();
 
-            services.AddScoped<ITicketRepository, TicketRepository>();
+                    services.AddScoped<ITicketRepository, TicketRepository>();
 
-            services.AddScoped<ISliderRepository, SliderRepository>();
-            services.AddScoped<IBannerRepository, BannerRepository>();
-            services.AddScoped<IMainPageDetailRepository, MainPageDetailRepository>();
+                    services.AddScoped<ISliderRepository, SliderRepository>();
+                    services.AddScoped<IBannerRepository, BannerRepository>();
+                    services.AddScoped<IMainPageDetailRepository, MainPageDetailRepository>();
 
-            #region OrderRepositorys
+                    #region OrderRepositorys
 
-            services.AddScoped<IOrderRepository, OrderRepository>();
-            services.AddScoped<IOrderItemRepository, OrderItemRepository>();
+                        services.AddScoped<IOrderRepository, OrderRepository>();
+                        services.AddScoped<IOrderItemRepository, OrderItemRepository>();
 
-            #endregion
+                    #endregion
 
-            #region ProductRepositorys
+                    #region ProductRepositorys
 
-            services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<IProductImageRepository, ProductImageRepository>();
-            services.AddScoped<IProductCommentRepository, ProductCommentRepository>();
-            services.AddScoped<IProductDetailRepository, ProductDetailRepository>();
+                        services.AddScoped<IProductRepository, ProductRepository>();
+                        services.AddScoped<IProductImageRepository, ProductImageRepository>();
+                        services.AddScoped<IProductCommentRepository, ProductCommentRepository>();
+                        services.AddScoped<IProductDetailRepository, ProductDetailRepository>();
 
-            services.AddScoped<IAvailableProductColorRepository, AvailableProductColorRepository>();
-            services.AddScoped<IAvailableProductSizeRepository, AvailableProductSizeRepository>();
+                        services.AddScoped<IAvailableProductColorRepository, AvailableProductColorRepository>();
+                        services.AddScoped<IAvailableProductSizeRepository, AvailableProductSizeRepository>();
 
-            #endregion
+                    #endregion
 
-            #endregion
+                #endregion
 
-            #region UserRepositorys
+                #region UserRepositorys
 
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IUserRoleRepository, UserRoleRepository>();
-            services.AddScoped<IUserAddressRepository, UserAddressRepository>();
-            services.AddScoped<IRoleRepository, RoleRepository>();
-            services.AddScoped<IRolePermissionRepository, RolePermissionRepository>();
-            services.AddScoped<IPermissionRepository, PermissionRepository>();
-            services.AddScoped<IRecentVisitRepository, RecentVisitRepository>();
-            services.AddScoped<ILikedProductRepository, LikedProductRepository>();
+                    services.AddScoped<IUserRepository, UserRepository>();
+                    services.AddScoped<IUserRoleRepository, UserRoleRepository>();
+                    services.AddScoped<IUserAddressRepository, UserAddressRepository>();
+                    services.AddScoped<IRoleRepository, RoleRepository>();
+                    services.AddScoped<IRolePermissionRepository, RolePermissionRepository>();
+                    services.AddScoped<IPermissionRepository, PermissionRepository>();
+                    services.AddScoped<IRecentVisitRepository, RecentVisitRepository>();
+                    services.AddScoped<ILikedProductRepository, LikedProductRepository>();
 
-            #endregion
+                #endregion
 
 
             #endregion

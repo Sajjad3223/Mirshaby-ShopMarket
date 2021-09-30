@@ -1,5 +1,4 @@
-﻿#nullable enable
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +8,6 @@ using ShopMarket.Core.Interfaces.ShopInterfaces;
 using ShopMarket.Core.Interfaces.ShopInterfaces.ProductInterfaces;
 using ShopMarket.Core.Interfaces.UserInterfaces;
 using ShopMarket.Core.Utilities;
-using ShopMarket.Core.Utilities.Mappers;
 using ShopMarket.Core.ViewModels.ShopViewModels;
 using ShopMarket.Core.ViewModels.ShopViewModels.OrderViewModels;
 using ShopMarket.Core.ViewModels.ShopViewModels.ProductViewModels;
@@ -23,6 +21,8 @@ namespace ShopMarket.Controllers
 {
     public class ProductController : Controller
     {
+        #region Services
+
         private readonly IShopCategoryService _shopCategoryService;
 
         private readonly IProductService _productService;
@@ -37,6 +37,10 @@ namespace ShopMarket.Controllers
 
         private readonly IAvailableProductColorService _availableColorService;
         private readonly IAvailableProductSizeService _availableSizeService;
+
+        #endregion
+
+        #region Inject Services
 
         public ProductController(IProductService productService, IProductImageService productImageService, IProductDetailService productDetailService, IProductCommentService productCommentService, IAvailableProductColorService availableColorService, IAvailableProductSizeService availableSizeService, IShopCategoryService shopCategoryService, IOrderItemService orderItemService, IOrderService orderService, ILikedProductService likedProductService, IRecentVisitService recentVisitService)
         {
@@ -53,6 +57,8 @@ namespace ShopMarket.Controllers
             _recentVisitService = recentVisitService;
         }
         
+
+        #endregion
 
         [Route("/product/{productId}/{slug?}")]
         public async Task<IActionResult> ShowProduct(int productId,string? slug)
@@ -236,7 +242,7 @@ namespace ShopMarket.Controllers
 
         [Authorize]
         [Route("/Product/AddComment/{productId}/{score}/{comment}")]
-        public async Task<IActionResult> AddComment(int productId,int score, string comment)
+        public IActionResult AddComment(int productId,int score, string comment)
         {
             _productCommentService.InsertComment(new ProductCommentViewModel()
             {

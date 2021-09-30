@@ -15,6 +15,8 @@ namespace ShopMarket.Infra.Data.ShopMarketContext
             
         }
 
+        #region DB Sets
+
         public DbSet<User> Users { get; set; }
         public DbSet<LikedProduct> LikedProducts { get; set; }
         public DbSet<UserAddress> Addresses { get; set; }
@@ -44,12 +46,20 @@ namespace ShopMarket.Infra.Data.ShopMarketContext
         public DbSet<ShopCategory> ShopCategories { get; set; }
         public DbSet<Store> Stores { get; set; }
 
+        #endregion
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            #region Handle Foreign Key Relations Delete Behavior
+
             foreach (var foreignKey in modelBuilder.Model.GetEntityTypes().SelectMany(s => s.GetForeignKeys()))
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
+
+            #endregion
+
+            #region Query Filters
 
             modelBuilder.Entity<User>().HasQueryFilter(u => !u.IsDeleted);
             modelBuilder.Entity<Role>().HasQueryFilter(u => !u.IsDelete);
@@ -58,6 +68,8 @@ namespace ShopMarket.Infra.Data.ShopMarketContext
             modelBuilder.Entity<Order>().HasQueryFilter(o => !o.IsDeleted);
             modelBuilder.Entity<ShopCategory>().HasQueryFilter(shc => !shc.IsDeleted);
             modelBuilder.Entity<Store>().HasQueryFilter(s => !s.IsDeleted);
+
+            #endregion
 
             base.OnModelCreating(modelBuilder);
         }
